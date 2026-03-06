@@ -4,8 +4,9 @@
   "proj_description": "flow-otter.com rende più facile comprendere il flusso delle tue transazioni crypto",
   "proj_tagline": "Otto la lontra segue il flusso delle tue transazioni crypto",
   "views": {
-    "home": "Home",
-    "users": "Utenti",
+    "home": "Dashboard",
+    "table": "Tabella",
+    "graph": "Grafo",
     "privacy": "Privacy",
     "contacts": "Contatti"
   },

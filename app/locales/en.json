@@ -4,8 +4,9 @@
   "proj_description": "flow-otter.com makes it easier to understand the flow of your crypto transactions",
   "proj_tagline": "Otto the otter follows the flow of your crypto",
   "views": {
-    "home": "Home",
-    "users": "Users",
+    "home": "Dashboard",
+    "table": "Table",
+    "graph": "Graph",
     "privacy": "Privacy",
     "contacts": "Contacts"
   },
