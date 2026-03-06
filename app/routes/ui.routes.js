@@ -48,20 +48,30 @@ router.get('/favicon.ico', (req, res) => {
 })
 
 // Users
-router.get(`/:lang(${LANG_REGEX})/users`, async(req, res) => {
+/* router.get(`/:lang(${LANG_REGEX})/users`, async(req, res) => {
   try {
     const users = await getAllUsers()
     viewController(req, res, 'users', [{ name: 'users' }], users)
   } catch (error) {
     console.error('Error fetching users:', error)
   }
-})
+}) */
 
 // Privacy
 router.get(`/:lang(${LANG_REGEX})/privacy`, (req, res) => viewController(req, res, 'privacy', [{ name: 'privacy' }]))
 
 // Contacts
 router.get(`/:lang(${LANG_REGEX})/contacts`, (req, res) => viewController(req, res, 'contacts', [{ name: 'contacts' }]))
+
+// Transactions table
+router.get(
+  `/:lang(${LANG_REGEX})/transactions-table`, 
+  (req, res) => viewController(req, res, 'transactions-table', [{ name: 'transactions-table' }]))
+
+// Transactions graph
+router.get(
+  `/:lang(${LANG_REGEX})/transactions-graph`, 
+  (req, res) => viewController(req, res, 'transactions-graph', [{ name: 'transactions-graph' }]))
 
 // Home page
 router.get(`/:lang(${LANG_REGEX})`, (req, res) => viewController(req, res, 'home', []))

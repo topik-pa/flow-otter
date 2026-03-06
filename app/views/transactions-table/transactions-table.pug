@@ -1,0 +1,20 @@
+extends ../layout.pug
+
+block append meta
+  meta(property="og:title" content=__('views.transactions-table') + ' | ' + __('proj_name'))
+  meta(property="og:description" content=__('transactions-table.meta.description'))
+  meta(property="og:image" content=og_image)
+  meta(property="og:url" content=canonicalUrl)
+
+  title= __('views.transactions-table') + ' | ' + proj_name
+  meta(name="description" content=__('transactions-table.meta.description'))
+  meta(name="keywords" content=__('transactions-table.meta.keywords'))
+
+  link(rel="canonical", href=canonicalUrl)
+  each link in hreflangs
+    link(rel="alternate", hreflang=link.lang, href=link.url)
+
+block main
+  include ../components/shared/breadcrumbs/breadcrumbs.pug
+
+  h1= __('transactions-table.title')

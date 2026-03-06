@@ -7,7 +7,6 @@
 }
 
 #main-logo a div {
-  line-height: 85%;
   letter-spacing: 3px;
   text-shadow: var(--text-shadow);
 }

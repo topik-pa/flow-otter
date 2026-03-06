@@ -2,11 +2,11 @@
 	"hello": "Ciao",
   "proj_name": "flow-otter.com",
   "proj_description": "flow-otter.com rende più facile comprendere il flusso delle tue transazioni crypto",
-  "proj_tagline": "Otto la lontra segue il flusso delle tue transazioni crypto",
+  "proj_tagline": "Otto la lontra rivela il flusso delle tue transazioni crypto",
   "views": {
     "home": "Dashboard",
-    "table": "Tabella",
-    "graph": "Grafo",
+    "transactions-table": "Tabella",
+    "transactions-graph": "Grafo",
     "privacy": "Privacy",
     "contacts": "Contatti"
   },
@@ -26,6 +26,22 @@
       "description": "Pagina Contatti"
     },
     "title": "Contattaci"
+  },
+  "transactions-table": {
+    "meta": {
+      "keywords": "transazioni, tabella, crypto",
+      "title": "Tabella delle Transazioni",
+      "description": "Visualizza le tue transazioni crypto in formato tabellare"
+    },
+    "title": "Tabella delle Transazioni"
+  },
+  "transactions-graph": {
+    "meta": {
+      "keywords": "transazioni, grafo, crypto",
+      "title": "Grafo delle Transazioni",
+      "description": "Visualizza le tue transazioni crypto in formato grafico"
+    },
+    "title": "Grafo delle Transazioni"
   },
   "404": {
     "text": "Questa pagina non è più disponibile oppure non è mai esistita. <br><br>Inizia la navigazione partendo dalla Home page.<br><br>"

@@ -2,11 +2,11 @@
 	"hello": "Hello",
   "proj_name": "flow-otter.com",
   "proj_description": "flow-otter.com makes it easier to understand the flow of your crypto transactions",
-  "proj_tagline": "Otto the otter follows the flow of your crypto",
+  "proj_tagline": "Otto the otter reveals the flow of your crypto transactions",
   "views": {
     "home": "Dashboard",
-    "table": "Table",
-    "graph": "Graph",
+    "transactions-table": "Table",
+    "transactions-graph": "Graph",
     "privacy": "Privacy",
     "contacts": "Contacts"
   },
@@ -26,6 +26,22 @@
       "description": "Contact page"
     },
     "title": "Contact us"
+  },
+  "transactions-table": {
+    "meta": {
+      "keywords": "transactions, table, crypto",
+      "title": "Transactions Table",
+      "description": "View your crypto transactions in a table format"
+    },
+    "title": "Transactions Table"
+  },
+  "transactions-graph": {
+    "meta": {
+      "keywords": "transactions, graph, crypto",
+      "title": "Transactions Graph",
+      "description": "View your crypto transactions in a graph format"
+    },
+    "title": "Transactions Graph"
   },
   "404": {
     "text": "This page is no longer available or never existed. <br><br>Start browsing from the Home page.<br><br>"
