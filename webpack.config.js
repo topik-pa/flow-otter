@@ -1,5 +1,5 @@
 /**
- * Webpack configuration for the PHOEBE application.
+ * Webpack configuration
  * 
  * @type {import('webpack').Configuration}
  * @description Configures webpack to:

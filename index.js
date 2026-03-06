@@ -1,5 +1,5 @@
 /**
- * Main entry point for the PHOEBE application server.
+ * Main entry point for the application server.
  * Configures environment variables, initializes the logger, and starts the Express server.
  * 
  * @module index
