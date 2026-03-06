@@ -1,0 +1,255 @@
+
+Pagina 1: Login/Registrazione
++--------------------------------------------------+
+|  [Logo] Cryptolize                               |
++--------------------------------------------------+
+|                                                  |
+|    +----------------------------------+          |
+|    |                                  |          |
+|    |   [Tab: Login] [Tab: Registra] 	|          |
+|    |                                  |          |
+|    |   Email:    [____________]       |          |
+|    |                                  |          |
+|    |   Password: [____________]       |          |
+|    |                                  |          |
+|    |   [ ] Ricordami                  |          |
+|    |                                  |          |
+|    |        [Accedi]                  |          |
+|    |                                  |          |
+|    |   Password dimenticata?          |          |
+|    |                                  |          |
+|    +----------------------------------+          |
+|                                                  |
++--------------------------------------------------+
+
+
+
+
+Pagina 2: Dashboard Principale 
++--------------------------------------------------+
+| [Logo] Cryptolize    [User] [Logout]             |
++--------------------------------------------------+
+| [Dashboard] [Transazioni] [Analisi] [Impostaz]   |
++--------------------------------------------------+
+|                                                  |
+| Upload CSV                                       |
+| +----------------------------------------------+ |
+| | [📁 Trascina file CSV o clicca per caricare]|  |
+| | Formati supportati: .csv                     | |
+| +----------------------------------------------+ |
+|                                                  |
+| File CSV Caricati                                |
+| +----------------------------------------------+ |
+| | Nome File       | Data Caricamento | Azioni |  |
+| |---------------|-----------------|---------| |
+| | portfolio.csv  | 2025-12-08     | [📥] [🗑️] |  |
+| | transactions.csv | 2025-12-10     | [📥] [🗑️]  |
+| | ...           | ...             | ...     | |
+| +----------------------------------------------+ |
+|                                                  |
+| Riepilogo Portafoglio                            |
+| +--------------------+  +---------------------+  |
+| | Valore Totale      |  | P&L Totale         |   |
+| | € 15,420.50        |  | +€ 2,340 (+17.9%) |    |
+| +--------------------+  +---------------------+  |
+| +--------------------+  +---------------------+  |
+| | N° Transazioni     |  | N° Asset           |   |
+| | 127                |  | 8                  |   |
+| +--------------------+  +---------------------+  |
+|                                                  |
+| Distribuzione Portafoglio        Performance     |
+| +-------------------+  +----------------------+  |
+| |                   |  |  Valore €            |  |
+| |   [Grafico        |  |    /\                |  |
+| |    a Torta]       |  |   /  \    /\         |  |
+| |                   |  |  /    \  /  \  /     |  |
+| |  BTC 45%          |  | /      \/    \/      |  |
+| |  ETH 30%          |  +----------------------+  |
+| |  Altri 25%        |  | Gen Feb Mar Apr Mag  |  |
+| +-------------------+  +----------------------+  |
+|                                                  |
++--------------------------------------------------+
+
+
+
+
+Pagina 3: Transazioni
++--------------------------------------------------+
+| [Logo] Cryptolize    [User] [Logout]             |
++--------------------------------------------------+
+| [Dashboard] [Transazioni] [Analisi] [Impostaz]   |
++--------------------------------------------------+
+|                                                  |
+| Filtri: [Tutti ▼] [Data ▼] [Asset ▼] [Cerca...]  |
+|                                                  |
+| Lista Transazioni                     [Esporta]  |
+| +----------------------------------------------+ |
+| | ID  | Data       | Tipo | Coppia   | Prezzo |  |
+| |-----|------------|------|----------|--------|  |
+| | 001 | 2025-12-01 | BUY  | BTC/EUR  | 42,500 |  |
+| | 002 | 2025-12-02 | SELL | ETH/EUR  | 3,200  |  |
+| | 003 | 2025-12-03 | BUY  | ADA/EUR  | 0.45   |  |
+| | ... | ...        | ...  | ...      | ...    |  |
+| +----------------------------------------------+ |
+|                                                  |
+| Grafo Relazioni Transazioni                      |
+| +----------------------------------------------+ |
+| |                                              | |
+| |     EUR -----> BTC                           | |
+| |      |          |                            | |
+| |      v          v                            | |
+| |     ETH <----- USDT                          | |
+| |      |                                       | |
+| |      v                                       | |
+| |     ADA                                      | |
+| |                                              | |
+| +----------------------------------------------+ |
+|                                                  |
++--------------------------------------------------+
+
+
+
+
+Pagina 4: Analisi Avanzata
++--------------------------------------------------+
+| [Logo] Cryptolize    [User] [Logout]             |
++--------------------------------------------------+
+| [Dashboard] [Transazioni] [Analisi] [Impostaz]   |
++--------------------------------------------------+
+|                                                  |
+| Periodo: [Ultimo mese ▼]  Asset: [Tutti ▼]       |
+|                                                  |
+| +--------------------+  +---------------------+  |
+| | ROI Medio          |  | Win Rate           |   |
+| | 23.4%              |  | 68%                |   |
+| +--------------------+  +---------------------+  |
+| +--------------------+  +---------------------+  |
+| | Holding Time Medio |  | Drawdown Max       |   |
+| | 14 giorni          |  | -12.3%             |   |
+| +--------------------+  +---------------------+  |
+|                                                  |
+| Volumi per Asset              Heatmap Attività   |
+| +-------------------+  +----------------------+  |
+| |      ████         |  |    L M M G V S D    |   |
+| | BTC  ████         |  | 00 ░ ░ █ ░ ░ ░ ░    |   |
+| | ETH  ██           |  | 06 ░ ░ ░ ░ ░ ░ ░    |   |
+| | ADA  █            |  | 12 █ ░ ░ █ ░ ░ ░    |   |
+| | SOL  ███          |  | 18 ░ █ ░ ░ █ ░ ░    |   |
+| +-------------------+  +----------------------+  |
+|                                                  |
+| P&L per Asset                                    |
+| +----------------------------------------------+ |
+| | Asset | Costo Medio | Valore | P&L    | %   |  |
+| |-------|-------------|--------|--------|-----|  |
+| | BTC   | € 38,500    | 42,500 | +4,000 | +10%|  |
+| | ETH   | € 3,100     | 3,200  | +100   | +3% |  |
+| | ADA   | € 0.50      | 0.45   | -0.05  | -10%|  |
+| +----------------------------------------------+ |
+|                                                  |
++--------------------------------------------------+
+
+
+
+
+Pagina 5: Impostazioni
++--------------------------------------------------+
+| [Logo] Cryptolize    [User] [Logout]             |
++--------------------------------------------------+
+| [Dashboard] [Transazioni] [Analisi] [Impostazioni]|
++--------------------------------------------------+
+|                                                  |
+| [Profilo] [Preferenze] [Dati] [Sicurezza]        |
+|                                                  |
+| PROFILO                                          |
+| +----------------------------------------------+ |
+| | Nome:           [____________]               | |
+| |                                              | |
+| | Email:          [____________]               | |
+| |                                              | |
+| | Foto profilo:   [📷] [Carica nuova]          | |
+| |                                              | |
+| |                    [Salva modifiche]         | |
+| +----------------------------------------------+ |
+|                                                  |
+| PREFERENZE                                       |
+| +----------------------------------------------+ |
+| | Valuta di riferimento:  [EUR ▼]              | |
+| |                                              | |
+| | Fuso orario:            [UTC+1 ▼]            | |
+| |                                              | |
+| | Formato data:           [GG/MM/AAAA ▼]       | |
+| |                                              | |
+| | Tema:                   ⚪ Chiaro  ⚫ Scuro  | |
+| |                                              | |
+| | Notifiche email:        [✓] Abilitate        | |
+| |                                              | |
+| |                    [Salva preferenze]        | |
+| +----------------------------------------------+ |
+|                                                  |
++--------------------------------------------------+
+
++--------------------------------------------------+
+| GESTIONE DATI                                    |
+| +----------------------------------------------+ |
+| | File CSV caricati:                           | |
+| |                                              | |
+| | • portfolio_2025.csv    [📥] [🗑️]            | |
+| | • transactions_Q4.csv   [📥] [🗑️]            | |
+| |                                              | |
+| | [📤 Esporta tutti i dati]                    | |
+| |                                              | |
+| | Backup automatico:      [✓] Attivo           | |
+| | Ultimo backup:          08/12/2025 14:30     | |
+| |                                              | |
+| +----------------------------------------------+ |
+|                                                  |
+| SICUREZZA                                        |
+| +----------------------------------------------+ |
+| | Cambia password:                             | |
+| |                                              | |
+| | Password attuale:    [____________]          | |
+| | Nuova password:      [____________]          | |
+| | Conferma password:   [____________]          | |
+| |                                              | |
+| |                    [Aggiorna password]       | |
+| |                                              | |
+| | Autenticazione a due fattori (2FA):          | |
+| | [Abilita 2FA]                                | |
+| |                                              | |
+| | Sessioni attive:                             | |
+| | • Chrome - Windows (Questa sessione)         | |
+| | • Firefox - Android (2 ore fa)  [Termina]    | |
+| |                                              | |
+| +----------------------------------------------+ |
+|                                                  |
+| ZONA PERICOLOSA                                  |
+| +----------------------------------------------+ |
+| | ⚠️  Elimina account                          | |
+| |                                              | |
+| | Questa azione è irreversibile e cancellerà   | |
+| | tutti i tuoi dati permanentemente.           | |
+| |                                              | |
+| |              [🗑️ Elimina account]            | |
+| +----------------------------------------------+ |
+|                                                  |
++--------------------------------------------------+
+
+
+
+
+Metriche Finanziarie
+P&L (Profit & Loss): Calcola guadagni/perdite realizzate per ogni asset e totali
+Costo medio di carico: Per ogni criptovaluta posseduta
+ROI percentuale: Per asset e complessivo
+Saldo attuale portafoglio: Quantità possedute per ogni crypto
+Grafici Aggiuntivi
+Grafico a torta: Distribuzione del portafoglio attuale per valore
+Grafico temporale: Evoluzione del valore del portafoglio nel tempo
+Istogramma volumi: Volumi di trading per asset o per periodo
+Heatmap: Attività di trading per giorno/ora (individuare pattern)
+Statistiche Operative
+Frequenza trading: Numero transazioni per asset/periodo
+Holding time medio: Tempo medio tra acquisto e vendita
+Win rate: Percentuale di operazioni in profitto
+Commissioni totali: Se disponibili nel CSV
+
