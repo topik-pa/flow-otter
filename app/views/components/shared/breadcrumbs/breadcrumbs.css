@@ -1,9 +1,8 @@
 #breadcrumbs {
-  border-bottom: 1px solid var(--darker-gray);
   text-align: center;
-  padding-bottom: var(--main-padding);
+  padding: var(--main-padding) 0;
   margin-bottom: calc(var(--main-padding) * 2);
-  color: var(--secondary);
+  background-color: var(--lightest-gray);
 }
 
 #breadcrumbs nav {

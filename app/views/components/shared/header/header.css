@@ -5,7 +5,7 @@
 header {
   padding: var(--x-small-space) var(--main-padding) var(--main-padding);
   padding-bottom: 0;
-  background: var(--secondary);
+  background: var(--primary);
   font-weight: 500;
 }
 
@@ -14,19 +14,20 @@ header > div:nth-child(1)  {
   justify-content: end;
   padding-bottom: var(--x-small-space);
   margin-bottom: var(--x-small-space);
-  border-bottom: 1px solid var(--darker-gray);
+  border-bottom: 1px solid var(--lighter-gray);
 }
 
 header > div:nth-child(2)  {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  border-bottom: 1px solid var(--lighter-gray);
 }
 
 header a {
-  color: var(--primary);
+  color: var(--secondary);
   text-decoration: none;
   display: flex;
-    align-items: center;
+  align-items: center;
 }
 

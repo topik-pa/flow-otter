@@ -5,7 +5,7 @@
 #main-menu li {
   display: inline-block;
   margin-left: 1px;
-  background-color: var(--darkest-gray);
+  background-color: var(--lightest-gray);
   border-top-left-radius: var(--border-radius-small);
   border-top-right-radius: var(--border-radius-small);
 }
