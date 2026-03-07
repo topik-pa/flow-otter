@@ -75,8 +75,10 @@ html(lang=locale || 'en')
       meta(property="og:site_name" content=proj_name)
   body(id=id)
     include ./components/shared/header/header.pug
-    main(class=className)
-      block main
+    div(class="layout")
+      block column
+      main(class=className)
+        block main
     include ./components/shared/cookie_layer/cookie_layer.pug
     include ./components/shared/footer/footer.pug
     include ./components/shared/goto_top/goto_top.pug

@@ -1,0 +1,31 @@
+aside#column .icon-cheveron-up:before {
+  font-size: var(--base-space);
+  border: 1px solid;
+  border-radius: 50%;
+  transform: rotate(-90deg);
+  display: inline-block;
+  transform-origin: center;
+  cursor: pointer;
+  position: absolute;
+  top: calc(var(--base-space) / -2);
+  right: calc(var(--base-space) / -2);
+  transition: all .4s ease-in-out;
+  background-color: var(--white);
+}
+aside#column.collapsed .icon-cheveron-up:before {
+  transform: rotate(90deg);
+}
+
+aside#column {
+  color: var(--white);
+}
+
+aside#column h3 {
+  color: var(--white);
+  background-color: var(--darkest-gray);
+  font-size: var(--font-size-small);
+  font-weight: 600;
+  margin: 0;
+  padding: var(--main-padding);
+  text-transform: uppercase;
+}

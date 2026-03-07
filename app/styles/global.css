@@ -91,3 +91,38 @@ main {
 section {
   margin-bottom: var(--xx-large-space);
 }
+
+/* Layout styles */
+.layout {
+  padding: 0 var(--main-padding);
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  flex: 1;
+}
+.layout main {
+  width: calc(80% - var(--main-padding) * 2);
+  padding: var(--main-padding);
+}
+.layout #column {
+  padding: var(--main-padding);
+  background: var(--lightest-gray);
+  position: relative;
+  width: calc(20% - var(--main-padding) * 2);
+}
+.layout #column.collapsed {
+  width: 5%;
+}
+/* Layout styles */
+
+@media screen and (max-width: 768px) {
+  /* Layout styles */
+  .layout main {
+    width: calc(60% - var(--main-padding) * 2);
+  }
+  .layout #column {
+    width: calc(40% - var(--main-padding) * 2);
+    min-width: 120px;
+  }
+  /* Layout styles */
+}
