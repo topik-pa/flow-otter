@@ -52,26 +52,22 @@ template.innerHTML = `
       background-color: var(--darkest-gray);
       padding: var(--x-small-space);
     }
-    #remove {
+    #remove, #toggle {
       position: absolute;
       top: var(--main-padding);
       right: var(--main-padding);
       cursor: pointer;
-      font-size: 36px;
-      line-height: 10px;
       display: block;
       width: 16px;
       height: 16px;
     }
+    #remove {
+      font-size: 36px;
+      line-height: 10px;
+    }
     #toggle {
-      position: absolute;
-      top: var(--main-padding);
       right: calc(var(--main-padding) * 3);
-      cursor: pointer;
-      width: 16px;
-      height: 16px;
       background-color: var(--white);
-      display: block;
       border: 1px solid var(--dark-gray);
       box-sizing: border-box;
     }
@@ -123,7 +119,6 @@ class CmpBullet extends HTMLElement {
       sessionStorage.setItem(sessionStorageKey, JSON.stringify(storedTransactions))
       const event = new Event(updatedStoreEvent)
       window.dispatchEvent(event)
-      this.remove()
     })
   }
 
