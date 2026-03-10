@@ -55,6 +55,13 @@ const dropFileMngmt = () => {
 }
 
 const uploadFileMngmt = () => {
+  const storeTransactions = (data) => {
+    const sessionStorageKey = 'fo-transactions'
+    const storedTransactions = JSON.parse(sessionStorage.getItem(sessionStorageKey)) || []
+    storedTransactions.push(data)
+    sessionStorage.setItem(sessionStorageKey, JSON.stringify(storedTransactions))
+  }
+
   const $uploadForm = document.getElementById('transactions-upload')
   $uploadForm.addEventListener('submit', async(e) => {
     e.preventDefault()
@@ -63,6 +70,7 @@ const uploadFileMngmt = () => {
       alert('Please select a file to upload.')
       return
     }
+
     const file = fileInput.files[0]
     const formData = new FormData()
     formData.append('file', file)
@@ -71,12 +79,20 @@ const uploadFileMngmt = () => {
         method: 'POST',
         body: formData
       })
-      console.log(await response.json())
+      const jsonResponse = await response.json()
+      if(jsonResponse.error) {
+        alert(jsonResponse.error)
+      } else {
+        storeTransactions(jsonResponse)
+        // alert('File uploaded successfully! Check console for parsed data.')
+      }
     } catch (error) {
       throw new Error(error)
     }
   })
 }
+
+
 
 const column = {
   init: () => {

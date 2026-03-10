@@ -163,9 +163,7 @@ export default async function getNormalizedDataFromUploadedFile(file) {
     return getExcelData(file)
   }
   if (isCSV) {
-    await getCSVData(file).then(data => {
-      return data
-    }).catch(err => {
+    return await getCSVData(file).catch(err => {
       throw new Error(err)
     })
   }
