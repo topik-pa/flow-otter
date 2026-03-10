@@ -109,9 +109,10 @@ section {
   background: var(--lightest-gray);
   position: relative;
   width: calc(20% - var(--main-padding) * 2);
+  transition: all .4s ease-in-out;
 }
 .layout #column.collapsed {
-  width: 5%;
+  width: 0;
 }
 /* Layout styles */
 

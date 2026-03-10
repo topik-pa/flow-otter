@@ -33,7 +33,7 @@
 }
 .hamburger {
   font-size: var(--font-size-huge);
-  color: var(--primary);
+  color: var(--secondary);
 }
 
 @media screen and (max-width: 1280px) {

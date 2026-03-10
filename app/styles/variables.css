@@ -35,6 +35,7 @@
   --black:         #191815;
 
   --blue: #3F6580;
+  --brown: #aa5134;
   --red:  #CD212A;
   --green:#009e4f;
   --gold:   #ffd700;
@@ -43,11 +44,11 @@
 
   --primary: var(--white);
   --secondary: var(--darkest-gray);
-  --tertiary: var(--blue);
+  --tertiary: var(--brown);
 
   --error: var(--red);
   --success: var(--green);
-  --link: var(--blue);
+  --link: var(--brown);
   --text: var(--secondary);
   --background: var(--primary);
 
