@@ -7,7 +7,7 @@ aside#column .icon-cheveron-up:before {
   transform-origin: center;
   cursor: pointer;
   position: absolute;
-  top: calc(var(--font-size-big) / -2);
+  top: var(--main-padding);
   right: calc(var(--font-size-big) / -2);
   transition: all .4s ease-in-out;
   background-color: var(--secondary);

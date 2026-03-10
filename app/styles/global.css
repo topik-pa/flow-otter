@@ -105,7 +105,7 @@ section {
   padding: var(--main-padding);
 }
 .layout #column {
-  padding: var(--main-padding);
+  padding: calc(var(--main-padding) * 4) var(--main-padding) var(--main-padding);
   background: var(--lightest-gray);
   position: relative;
   width: calc(20% - var(--main-padding) * 2);
