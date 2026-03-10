@@ -26,11 +26,12 @@
 
 import express from 'express'
 import path from 'path'
-import { getAllUsers } from '../controllers/db.controller.js'
 import { viewController } from '../controllers/ui.controller.js'
 import { fileURLToPath } from 'url'
 
+
 const router = express.Router()
+
 const LANG_REGEX = 'it|en'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
@@ -47,15 +48,27 @@ router.get('/favicon.ico', (req, res) => {
   res.sendFile('/public/favicon.ico', { root: './app' })
 })
 
-// Users
-/* router.get(`/:lang(${LANG_REGEX})/users`, async(req, res) => {
-  try {
-    const users = await getAllUsers()
-    viewController(req, res, 'users', [{ name: 'users' }], users)
-  } catch (error) {
-    console.error('Error fetching users:', error)
-  }
-}) */
+// upload file management
+import multer from 'multer'
+import getNormalizedDataFromUploadedFile from './get-normalized-data-from-uploaded-file.js'
+const uploadDestinationFolder = 'uploads/'
+const upload = multer({ dest: uploadDestinationFolder })
+router.post(
+  '/transactions-upload', 
+  upload.single('file'),
+  async(req, res) => {
+    if (!req.file) {
+      return res.status(400).json({ error: 'No file uploaded' })
+    }
+    try {
+      const normalizedData = await getNormalizedDataFromUploadedFile(req.file)
+      return res.status(200).json(normalizedData)
+    } catch (error) {
+      return res.status(500).json({
+        error: error?.message ?? 'Unknown error'
+      })
+    }
+  })
 
 // Privacy
 router.get(`/:lang(${LANG_REGEX})/privacy`, (req, res) => viewController(req, res, 'privacy', [{ name: 'privacy' }]))

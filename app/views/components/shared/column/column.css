@@ -1,5 +1,5 @@
 aside#column .icon-cheveron-up:before {
-  font-size: var(--base-space);
+  font-size: var(--font-size-big);
   border: 1px solid;
   border-radius: 50%;
   transform: rotate(-90deg);
@@ -7,25 +7,54 @@ aside#column .icon-cheveron-up:before {
   transform-origin: center;
   cursor: pointer;
   position: absolute;
-  top: calc(var(--base-space) / -2);
-  right: calc(var(--base-space) / -2);
+  top: calc(var(--font-size-big) / -2);
+  right: calc(var(--font-size-big) / -2);
   transition: all .4s ease-in-out;
-  background-color: var(--white);
+  background-color: var(--secondary);
 }
 aside#column.collapsed .icon-cheveron-up:before {
   transform: rotate(90deg);
 }
 
-aside#column {
-  color: var(--white);
+aside#column.collapsed * {
+  display: none;
+}
+aside#column #collapse {
+  display: block;
+  color: var(--primary);
 }
 
 aside#column h3 {
-  color: var(--white);
+  color: var(--primary);
   background-color: var(--darkest-gray);
   font-size: var(--font-size-small);
   font-weight: 600;
   margin: 0;
   padding: var(--main-padding);
   text-transform: uppercase;
+}
+
+#transactions-upload {
+  text-align: center;
+}
+#transactions-upload #drop {
+  padding: var(--xx-large-space) 0;
+  border: 2px dashed var(--light-gray);
+  background-color: var(--primary);
+  color: var(--secondary);
+  border-radius: var(--border-radius-small);
+  cursor: pointer;
+  transition: .4s;
+}
+#transactions-upload #loaded-files {
+  margin-top: var(--main-padding);
+}
+#transactions-upload #file-name {
+  font-style: italic;
+  word-wrap: break-word;
+  font-family: monospace;
+  font-size: var(--font-size-small);
+}
+#transactions-upload button {
+  width: 100%;
 }

@@ -32,12 +32,15 @@
   },
   "dependencies": {
     "compression": "^1.8.1",
+    "csv-parser": "^3.2.0",
     "dotenv": "^17.2.3",
     "express": "^4.22.1",
     "i18n": "^0.15.3",
     "mongoose": "^9.0.1",
+    "multer": "^2.1.1",
     "pino": "^10.1.0",
-    "pug": "^3.0.3"
+    "pug": "^3.0.3",
+    "xlsx": "^0.18.5"
   },
   "devDependencies": {
     "css-loader": "^7.1.2",
