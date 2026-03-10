@@ -26,7 +26,8 @@ const getExcelData = (file) => {
       format: 'excel',
       exchange: 'Binance',
       origin: file.originalname,
-      data: transactions.sort((a, b) => a.ts - b.ts)
+      data: transactions.sort((a, b) => a.ts - b.ts),
+      active: true
     }
   }
 
@@ -145,7 +146,8 @@ const getCSVData = (file) => {
             format: 'csv',
             exchange: csvFormat,
             origin: file.originalname,
-            data: transactions.sort((a, b) => a.ts - b.ts)
+            data: transactions.sort((a, b) => a.ts - b.ts),
+            active: true
           })
         }
         reject('Unsupported CSV file format')

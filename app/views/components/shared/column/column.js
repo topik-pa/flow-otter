@@ -1,3 +1,9 @@
+import {
+  createComponent,
+  sessionStorageKey,
+  updatedStoreEvent
+} from '../../../../scripts/globals.js'
+
 const $root = document.getElementById('column')
 
 const manageCollapsableMenu = () => {
@@ -56,10 +62,11 @@ const dropFileMngmt = () => {
 
 const uploadFileMngmt = () => {
   const storeTransactions = (data) => {
-    const sessionStorageKey = 'fo-transactions'
     const storedTransactions = JSON.parse(sessionStorage.getItem(sessionStorageKey)) || []
     storedTransactions.push(data)
     sessionStorage.setItem(sessionStorageKey, JSON.stringify(storedTransactions))
+    const event = new Event(updatedStoreEvent)
+    window.dispatchEvent(event)
   }
 
   const $uploadForm = document.getElementById('transactions-upload')
@@ -92,6 +99,41 @@ const uploadFileMngmt = () => {
   })
 }
 
+const manageUploadedFilesList = () => {
+  const storedTransactions = JSON.parse(sessionStorage.getItem(sessionStorageKey)) || []
+  const $loadedFiles = document.getElementById('loaded-files')
+  const $noFiles = document.getElementById('no-files')
+
+  if(storedTransactions.length === 0) {
+    $loadedFiles.innerHTML = ''
+    $noFiles.classList.remove('hide')
+    return
+  }
+  $noFiles.classList.add('hide')
+
+  $loadedFiles.innerHTML = ''
+
+  for(const file of storedTransactions) {
+    const date = new Date(file.date)
+    const dateOptions = {
+      day: '2-digit', month: '2-digit', year: 'numeric',
+      hour: '2-digit', minute: '2-digit', second: '2-digit'
+    }
+    const formattedDate = date.toLocaleString('en-GB', dateOptions)
+    const bullet = createComponent('cmp-bullet', {
+      status: file.active ? 'active' : 'inactive',
+      id: file.id
+    }, [
+      createComponent('span', { slot: 'type' }, [file.format]),
+      createComponent('span', { slot: 'name' }, [file.origin]),
+      createComponent('span', { slot: 'value' }, [file.exchange]),
+      createComponent('span', { slot: 'lastmod' }, [formattedDate]),
+      createComponent('span', { slot: 'footer' }, [])
+    ])
+    $loadedFiles.appendChild(bullet)
+  }
+}
+
 
 
 const column = {
@@ -99,6 +141,11 @@ const column = {
     manageCollapsableMenu()
     dropFileMngmt()
     uploadFileMngmt()
+    manageUploadedFilesList()
+
+    window.addEventListener(updatedStoreEvent, () => {
+      manageUploadedFilesList()
+    })
   }
 }
 

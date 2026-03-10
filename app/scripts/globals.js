@@ -15,6 +15,9 @@ const STATUS = {
   error: 'error'
 }
 
+export const sessionStorageKey = 'fo-transactions'
+export const updatedStoreEvent = 'fo-updated'
+
 export function updateStatus(targets, status) {
   if (!(status in STATUS)) {
     throw new Error(`Invalid status: ${status}`)
@@ -23,4 +26,22 @@ export function updateStatus(targets, status) {
     target.classList.remove(...Object.values(STATUS))
     target.classList.add(STATUS[status])
   })
+}
+
+export function createComponent(tag, attrs = {}, children = []) {
+  const el = document.createElement(tag)
+  // Imposta attributi
+  for (const [key, value] of Object.entries(attrs)) {
+    el.setAttribute(key, value)
+  }
+  // Aggiunge i figli (contenuto, slot, ecc.)
+  for (const child of children) {
+    if (!child) continue
+    if (typeof child === 'string' || typeof child === 'number') {
+      el.appendChild(document.createTextNode(child))
+    } else {
+      el.appendChild(child)
+    }
+  }
+  return el
 }

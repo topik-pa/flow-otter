@@ -26,6 +26,7 @@
 
 import mainMenu from '../views/components/shared/header/main-menu/main-menu.js'
 import column from '../views/components/shared/column/column.js'
+import './CmpBullet.js'
 import gotoTop from '../views/components/shared/goto_top/goto_top.js'
 import cookieLayer from '../views/components/shared/cookie_layer/cookie_layer.js'
 
