@@ -1,0 +1,20 @@
+#home #stats > div{
+  display: flex;
+  flex-wrap: wrap;
+  color: var(--white);
+  border: 1px solid var(--brown);
+}
+
+#home #stats > div > div{
+  width: 50%;
+  text-align: center;
+  padding: var(--main-padding) 0;
+  border: 1px solid var(--brown);
+  box-sizing: border-box;
+}
+
+#home #stats span {
+  color: var(--darker-gray);
+  font-weight: bold;
+  font-size: var(--font-size-huge);
+}

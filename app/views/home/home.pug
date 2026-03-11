@@ -36,6 +36,28 @@ block append meta
 
 block main
   h1= __('home.title')
+  
+  section#stats
+    h2= __('home.stats.title')
+    div
+      div 
+        h3= __('home.stats.uploaded-transactions-files')
+        span#files-count
+      div 
+        h3= __('home.stats.total-transactions')
+        span#total-transactions
+      div 
+        h3= __('home.stats.cryptos_count')
+        span#crypto-count
+      div 
+        h3= __('home.stats.cryptos_list')
+        span#crypto-list
+      div 
+        h3= __('home.stats.exchanges_count')
+        span#exchanges-count
+      div 
+        h3= __('home.stats.exchanges_list')
+        span#exchanges-list
 
 block column 
   include ../components/shared/column/column.pug
