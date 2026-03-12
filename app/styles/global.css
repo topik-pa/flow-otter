@@ -119,11 +119,31 @@ section {
 @media screen and (max-width: 768px) {
   /* Layout styles */
   .layout main {
+    width: calc(75% - var(--main-padding) * 2);
+  }
+  .layout #column {
+    width: calc(25% - var(--main-padding) * 2);
+    min-width: 170px;
+  }
+  .layout #column.collapsed {
+    width: 0;
+    min-width: initial
+  }
+  /* Layout styles */
+}
+
+@media screen and (max-width: 412px) {
+  /* Layout styles */
+  .layout main {
     width: calc(60% - var(--main-padding) * 2);
   }
   .layout #column {
     width: calc(40% - var(--main-padding) * 2);
     min-width: 120px;
+  }
+  .layout #column.collapsed {
+    width: 0;
+    min-width: initial
   }
   /* Layout styles */
 }

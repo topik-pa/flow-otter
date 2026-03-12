@@ -53,7 +53,9 @@ const updateStats = () => {
   const $exchangesCount = document.getElementById('exchanges-count')
   const $exchangesList = document.getElementById('exchanges-list')
 
-  if(storedTransactions.length === 0) {
+  const activeStoredTransactions = storedTransactions.filter(file => file.active)
+
+  if(activeStoredTransactions.length === 0) {
     $filesCount.innerText = 0
     $totalTransactions.innerText = 0
     $cryptoCount.innerText = 0
@@ -62,9 +64,6 @@ const updateStats = () => {
     $exchangesList.innerText = '-'
     return
   }
-
-  const activeStoredTransactions = storedTransactions.filter(file => file.active)
-
   
   $filesCount.innerText = activeStoredTransactions.length
   $totalTransactions.innerText = activeStoredTransactions.reduce(

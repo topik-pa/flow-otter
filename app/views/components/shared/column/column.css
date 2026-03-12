@@ -39,6 +39,7 @@ aside#column h3 {
 }
 #transactions-upload #drop {
   padding: var(--xx-large-space) 0;
+  margin-top: var(--main-padding);
   border: 2px dashed var(--light-gray);
   background-color: var(--primary);
   color: var(--secondary);

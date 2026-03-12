@@ -1,20 +1,28 @@
-#home #stats > div{
+#home #stats>div {
   display: flex;
   flex-wrap: wrap;
   color: var(--white);
-  border: 1px solid var(--brown);
 }
 
-#home #stats > div > div{
-  width: 50%;
+#home #stats>div>div {
+  width: 48%;
   text-align: center;
   padding: var(--main-padding) 0;
   border: 1px solid var(--brown);
   box-sizing: border-box;
+  margin: 1%;
 }
 
 #home #stats span {
-  color: var(--darker-gray);
+  color: var(--brown);
   font-weight: bold;
   font-size: var(--font-size-huge);
+}
+
+@media screen and (max-width: 768px) {}
+
+@media screen and (max-width: 412px) {
+  #home #stats>div>div {
+    width: 100%;
+  }
 }

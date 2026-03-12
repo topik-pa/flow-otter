@@ -11,8 +11,6 @@ template.innerHTML = `
       background-color: var(--light-gray);
       border-radius: var(--border-radius-small);
       width: 100%;
-      min-width: 16rem;
-      max-width: 28rem;
       box-sizing: border-box;
       margin: var(--main-padding) 0;
       &.active {
@@ -37,6 +35,7 @@ template.innerHTML = `
       padding: 0 var(--main-padding);
       font-style: italic;
       font-family: monospace;
+      word-wrap: break-word;
     }
     .value {
       padding: var(--x-small-space) var(--main-padding);
