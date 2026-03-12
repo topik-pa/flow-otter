@@ -4,6 +4,24 @@
   color: var(--white);
 }
 
+#home .filter-container {
+  background-color: var(--lightest-gray);
+  margin: 1%;
+  padding: var(--main-padding);
+}
+
+#home .filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--main-padding)
+}
+
+#home .filter label {
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+}
+
 #home #stats>div>div {
   width: 48%;
   text-align: center;

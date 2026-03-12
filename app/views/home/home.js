@@ -10,8 +10,67 @@ import {
   updatedStoreEvent
 } from './../../scripts/globals.js'
 
+let selectedExchanges = new Set()
 
-const updateStats = () => {
+const exchangeFilterMngmt = (transactions, isInitial) => {
+  const getAvailableExchanges = (transactions) => {
+    const uniqueExchanges = new Set()
+    transactions.forEach(file => {
+      if (file.exchange) {
+        uniqueExchanges.add(file.exchange)
+      }
+    })
+    return Array.from(uniqueExchanges).sort()
+  }
+  const renderExchangeFilters = (availableExchanges) => {
+    const $exchangeFilters = document.getElementById('exchange-filters')
+    if (!$exchangeFilters) return
+
+    $exchangeFilters.replaceChildren()
+
+    if (availableExchanges.length === 0) {
+      const $empty = document.createElement('span')
+      $empty.innerText = '-'
+      $exchangeFilters.appendChild($empty)
+      return
+    }
+
+    availableExchanges.forEach(exchange => {
+      const $label = document.createElement('label')
+
+      const $checkbox = document.createElement('input')
+      $checkbox.type = 'checkbox'
+      $checkbox.value = exchange
+      $checkbox.checked = selectedExchanges.has(exchange)
+      $checkbox.addEventListener('change', () => {
+        if ($checkbox.checked) {
+          selectedExchanges.add(exchange)
+        } else {
+          selectedExchanges.delete(exchange)
+        }
+        updateStats()
+      })
+
+      const $text = document.createElement('span')
+      $text.innerText = exchange
+
+      $label.appendChild($checkbox)
+      $label.appendChild($text)
+      $exchangeFilters.appendChild($label)
+    })
+  }
+  const availableExchanges = getAvailableExchanges(transactions)
+  const availableExchangesSet = new Set(availableExchanges)
+  selectedExchanges = new Set(
+    Array.from(selectedExchanges).filter(exchange => availableExchangesSet.has(exchange))
+  )
+  if (isInitial && selectedExchanges.size === 0) {
+    availableExchanges.forEach(exchange => selectedExchanges.add(exchange))
+  }
+  renderExchangeFilters(availableExchanges)
+}
+
+const printStats = (transactions) => {
   function countUniqueCrypto(transactions) {
     const uniqueCryptos = new Set()
     transactions.forEach(file => {
@@ -43,9 +102,6 @@ const updateStats = () => {
       exchanges: Array.from(uniqueExchanges).sort()
     }
   }
-
-  const storedTransactions = JSON.parse(sessionStorage.getItem(sessionStorageKey)) || []
-
   const $filesCount = document.getElementById('files-count')
   const $totalTransactions = document.getElementById('total-transactions')
   const $cryptoCount = document.getElementById('crypto-count')
@@ -53,9 +109,7 @@ const updateStats = () => {
   const $exchangesCount = document.getElementById('exchanges-count')
   const $exchangesList = document.getElementById('exchanges-list')
 
-  const activeStoredTransactions = storedTransactions.filter(file => file.active)
-
-  if(activeStoredTransactions.length === 0) {
+  if(transactions.length === 0) {
     $filesCount.innerText = 0
     $totalTransactions.innerText = 0
     $cryptoCount.innerText = 0
@@ -64,19 +118,33 @@ const updateStats = () => {
     $exchangesList.innerText = '-'
     return
   }
-  
-  $filesCount.innerText = activeStoredTransactions.length
-  $totalTransactions.innerText = activeStoredTransactions.reduce(
+
+  $filesCount.innerText = transactions.length
+  $totalTransactions.innerText = transactions.reduce(
     (acc, file) => acc + (file.data ? file.data.length : 0), 0
   )  
 
-  const cryptoStats = countUniqueCrypto(activeStoredTransactions)
+  const cryptoStats = countUniqueCrypto(transactions)
   $cryptoCount.innerText = cryptoStats.count
   $cryptoList.innerText = cryptoStats.cryptos.join(', ')
 
-  const exchangeStats = countUniqueExchanges(activeStoredTransactions)
+  const exchangeStats = countUniqueExchanges(transactions)
   $exchangesCount.innerText = exchangeStats.count
   $exchangesList.innerText = exchangeStats.exchanges.join(', ')
+}
+
+const updateStats = (isInitial = false) => {
+  const storedTransactions = JSON.parse(sessionStorage.getItem(sessionStorageKey)) || []
+  const activeStoredTransactions = storedTransactions.filter(file => file.active)
+
+  exchangeFilterMngmt(activeStoredTransactions, isInitial)
+
+  const filteredStoredTransactions = activeStoredTransactions.filter(file => {
+    if (!file.exchange) return false
+    return selectedExchanges.has(file.exchange)
+  })
+
+  printStats(filteredStoredTransactions)
 }
 
 export default  {
@@ -91,7 +159,7 @@ export default  {
       // console.error('Error adopting style sheets:', err)
     }
 
-    updateStats()
+    updateStats(true)
     window.addEventListener(updatedStoreEvent, () => {
       updateStats()
     })
