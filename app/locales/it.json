@@ -33,7 +33,8 @@
       "title": "Tabella delle Transazioni",
       "description": "Visualizza le tue transazioni crypto in formato tabellare"
     },
-    "title": "Tabella delle Transazioni"
+    "title": "Tabella delle Transazioni",
+    "empty": "Nessuna transazione disponibile"
   },
   "transactions-graph": {
     "meta": {

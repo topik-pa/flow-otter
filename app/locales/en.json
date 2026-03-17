@@ -33,7 +33,8 @@
       "title": "Transactions Table",
       "description": "View your crypto transactions in a table format"
     },
-    "title": "Transactions Table"
+    "title": "Transactions Table",
+    "empty": "No transactions available"
   },
   "transactions-graph": {
     "meta": {

@@ -39,7 +39,8 @@ cookieLayer.init()
 
 // Import views specific scripts
 const modules = {
-  home: () => import('../views/home/home.js')
+  home: () => import('../views/home/home.js'),
+  'transactions-table': () => import('../views/transactions-table/transactions-table.js')
 }
 
 // Execute view specific script

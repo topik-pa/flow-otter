@@ -1,0 +1,11 @@
+table {
+  font-family: monospace;
+  font-size: var(--font-size-x-small);
+}
+
+.table-empty-state {
+	padding: 1rem;
+	text-align: center;
+	color: #666;
+	font-style: italic;
+}
