@@ -159,7 +159,7 @@ export default  {
       // console.error('Error adopting style sheets:', err)
     }
 
-    updateStats(true)
+    updateStats('page-loaded')
     window.addEventListener(updatedStoreEvent, () => {
       updateStats()
     })

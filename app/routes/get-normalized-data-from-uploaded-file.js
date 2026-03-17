@@ -14,10 +14,10 @@ const getExcelData = (file) => {
         baseAsset: row['Base Asset'],
         quoteAsset: row['Quote Asset'],
         type: row['Type'],
-        orderPrice: row['Order Price'],
-        avgTradingPrice: +(+(row['AvgTrading Price'])).toFixed(4),
-        orderAmount: row['Order Amount'],
-        total: +(+(row['Total'])).toFixed(4)
+        orderPrice: (+row['Order Price']).toFixed(4),
+        avgTradingPrice: (+(row['AvgTrading Price'])).toFixed(4),
+        orderAmount: (+row['Order Amount']).toFixed(4),
+        total: (+(row['Total'])).toFixed(4)
       }
     ))
     return { 
@@ -64,9 +64,9 @@ const getCSVData = (file) => {
         quoteAsset: quoteAsset,
         pair: pair,
         type: row['Direction'] === 'Short' ? 'SELL' : 'BUY',
-        orderPrice: +row['Order Price'],
-        avgTradingPrice: +row['Filled Price'],
-        orderAmount: +row['Filled Quantity'],
+        orderPrice: (+row['Order Price']).toFixed(4),
+        avgTradingPrice: (+row['Filled Price']).toFixed(4),
+        orderAmount: (+row['Filled Quantity']).toFixed(4),
         total: +(row['Filled Price'] * row['Filled Quantity']).toFixed(4)
       }
     }
@@ -81,10 +81,12 @@ const getCSVData = (file) => {
         baseAsset: row['_3'],
         quoteAsset: row['_5'],
         type: row['_2'].toUpperCase(),
-        orderPrice: +(+(row['_6'].replace(/€/g, ''))).toFixed(4),
-        avgTradingPrice: +(+(row['_6'].replace(/€/g, ''))).toFixed(4),
-        orderAmount: +(+(row['_4'])).toFixed(4),
-        total: +(+(row['_7'].replace(/€/g, ''))).toFixed(4)
+        orderPrice: (+(row['_6'].replace(/€/g, ''))).toFixed(4),
+        avgTradingPrice: (+(row['_6'].replace(/€/g, ''))).toFixed(4),
+        orderAmount: (+(row['_4'])).toFixed(4),
+        total: (+(row['_7'].replace(/€/g, ''))).toFixed(4)
+        
+        
       }
     }
   }
@@ -95,9 +97,9 @@ const getCSVData = (file) => {
         map.set(t.orderNo, { ...t })
       } else {
         const existing = map.get(t.orderNo)
-        existing.orderAmount = +(existing.orderAmount + t.orderAmount).toFixed(4)
-        existing.filled = +(existing.filled + t.filled).toFixed(4) 
-        existing.total = +(existing.total + t.total).toFixed(4) 
+        existing.orderAmount = (+existing.orderAmount + +t.orderAmount).toFixed(4)
+        existing.filled = (+existing.filled + +t.filled).toFixed(4) 
+        existing.total = (+existing.total + +t.total).toFixed(4) 
       }
     }
     transactions = Array.from(map.values())
