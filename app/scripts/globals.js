@@ -16,6 +16,7 @@ const STATUS = {
 }
 
 export const sessionStorageKey = 'fo-transactions'
+export const filteredStoredTransactionsKey = 'fo-filtered-transactions'
 export const updatedStoreEvent = 'fo-updated'
 
 export function updateStatus(targets, status) {

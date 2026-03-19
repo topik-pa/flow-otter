@@ -7,6 +7,7 @@
  */
 import {
   sessionStorageKey,
+  filteredStoredTransactionsKey,
   updatedStoreEvent
 } from './../../scripts/globals.js'
 
@@ -145,6 +146,8 @@ const updateStats = (isInitial = false) => {
   })
 
   printStats(filteredStoredTransactions)
+  
+  sessionStorage.setItem(filteredStoredTransactionsKey, JSON.stringify(filteredStoredTransactions))
 }
 
 export default  {

@@ -1,5 +1,6 @@
 import {
   sessionStorageKey,
+  filteredStoredTransactionsKey,
   updatedStoreEvent
 } from './../../scripts/globals.js'
 
@@ -11,8 +12,12 @@ const buildTransactionsTable = () => {
   const storedTransactions = JSON.parse(sessionStorage.getItem(sessionStorageKey)) || []
   const activeStoredTransactions = storedTransactions.filter(file => file.active)
 
+  const filteredStoredTransactions = 
+    JSON.parse(sessionStorage.getItem(filteredStoredTransactionsKey)) || 
+    activeStoredTransactions
+
   const emptyMessage = tableWrapper.dataset.emptyMessage || 'No transactions available'
-  const hasTransactions = activeStoredTransactions.length > 0
+  const hasTransactions = filteredStoredTransactions.length > 0
   // const hasTransactions = storedTransactions.some(batch => Array.isArray(batch.data) && batch.data.length > 0)
 
   if (!hasTransactions) {
