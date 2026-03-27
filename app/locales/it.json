@@ -42,7 +42,8 @@
       "title": "Grafo delle Transazioni",
       "description": "Visualizza le tue transazioni crypto in formato grafico"
     },
-    "title": "Grafo delle Transazioni"
+    "title": "Grafo delle Transazioni",
+    "empty": "Nessuna transazione disponibile"
   },
   "404": {
     "text": "Questa pagina non è più disponibile oppure non è mai esistita. <br><br>Inizia la navigazione partendo dalla Home page.<br><br>"

@@ -10,6 +10,8 @@ block append meta
   meta(name="description" content=__('transactions-graph.meta.description'))
   meta(name="keywords" content=__('transactions-graph.meta.keywords'))
 
+  script(src='/scripts/vendors/gitgraph.edited.js')
+
   link(rel="canonical", href=canonicalUrl)
   each link in hreflangs
     link(rel="alternate", hreflang=link.lang, href=link.url)
@@ -18,3 +20,8 @@ block main
   include ../components/shared/breadcrumbs/breadcrumbs.pug
 
   h1= __('transactions-graph.title')
+
+  div#transactions-graph-container(data-empty-message=__('transactions-graph.empty'))
+
+block column 
+  include ../components/shared/column/column.pug
