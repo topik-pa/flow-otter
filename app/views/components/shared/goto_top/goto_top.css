@@ -9,7 +9,7 @@
   margin: var(--small-space);
   cursor: pointer;
   font-size: var(--font-size-bigger);
-  background-color: var(--blue-st);
+  background-color: var(--brown);
   z-index: var(--gototop);
 }
 #goto_top:hover {
