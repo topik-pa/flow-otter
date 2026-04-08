@@ -1,0 +1,8 @@
+
+Transactions
+User,Marco Pavan,4f3d209f-523d-54b4-beb7-3ab5e105ed84
+ID,Timestamp,Transaction Type,Asset,Quantity Transacted,Price Currency,Price at Transaction,Subtotal,Total (inclusive of fees and/or spread),Fees and/or Spread,Notes
+5b44ea26cbc6ae0001dfe857,2018-07-10 17:17:26 UTC,Buy,ETH,0.02395696,EUR,€372.66,€8.92780,€10.00,€1.0721992864,Bought 0.02395696 ETH for 10 EUR
+5b44e9f02893a50001a3f5b2,2018-07-10 17:16:32 UTC,Withdrawal,EUR,-40,EUR,€1.00,€40.00,€39.85,-€0.15,Withdrawal to BANCA MEDIOLANUM (IT68 U030 6234 2100 0000 1454 327)
+5b44d8fdaf07560001d7f265,2018-07-10 16:04:13 UTC,Buy,LTC,0.1,EUR,€64.96,€6.49600,€7.52,€1.024,Bought 0.1 LTC for 7.52 EUR
+5b44670b36a6350001c47a9b,2018-07-10 07:58:03 UTC,Deposit,EUR,100,EUR,€1.00,€100.00,€100.00,€0.00,Deposit from BANCA MEDIOLANUM (IT68 U030 6234 2100 0000 1454 327)
