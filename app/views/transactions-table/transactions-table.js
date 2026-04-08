@@ -43,7 +43,7 @@ const buildTransactionsTable = () => {
       </thead>
       <tbody>
     `
-  for (const batch of activeStoredTransactions) {
+  for (const batch of filteredStoredTransactions) {
     if (!Array.isArray(batch.data)) continue
     for (const t of batch.data) {
       const date = new Date(t.ts)

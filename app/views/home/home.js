@@ -12,6 +12,7 @@ import {
 } from './../../scripts/globals.js'
 
 let selectedExchanges = new Set()
+let selectedCrypto = new Set()
 
 const exchangeFilterMngmt = (transactions, isInitial) => {
   const getAvailableExchanges = (transactions) => {
@@ -69,6 +70,67 @@ const exchangeFilterMngmt = (transactions, isInitial) => {
     availableExchanges.forEach(exchange => selectedExchanges.add(exchange))
   }
   renderExchangeFilters(availableExchanges)
+}
+
+const cryptoFilterMngmt = (transactions, isInitial) => {
+  const getAvailableCrypto = (transactions) => {
+    const uniqueCrypto = new Set()
+    transactions.forEach(file => {
+      file.data.forEach(transaction => {
+        if (transaction.baseAsset && transaction.quoteAsset) {  
+          uniqueCrypto.add(transaction.baseAsset)
+          uniqueCrypto.add(transaction.quoteAsset)
+        }
+      })
+    })
+    return Array.from(uniqueCrypto).sort()
+  }
+  const renderCryptoFilters = (availableCrypto) => {
+    const $cryptoFilters = document.getElementById('crypto-filters')
+    if (!$cryptoFilters) return
+
+    $cryptoFilters.replaceChildren()
+
+    if (availableCrypto.length === 0) {
+      const $empty = document.createElement('span')
+      $empty.innerText = '-'
+      $cryptoFilters.appendChild($empty)
+      return
+    }
+
+    availableCrypto.forEach(crypto => {
+      const $label = document.createElement('label')
+
+      const $checkbox = document.createElement('input')
+      $checkbox.type = 'checkbox'
+      $checkbox.value = crypto
+      $checkbox.checked = selectedCrypto.has(crypto)
+      $checkbox.addEventListener('change', () => {
+        if ($checkbox.checked) {
+          selectedCrypto.add(crypto)
+        } else {
+          selectedCrypto.delete(crypto)
+        }
+        updateStats()
+      })
+
+      const $text = document.createElement('span')
+      $text.innerText = crypto
+
+      $label.appendChild($checkbox)
+      $label.appendChild($text)
+      $cryptoFilters.appendChild($label)
+    })
+  }
+  const availableCrypto = getAvailableCrypto(transactions)
+  const availableCryptoSet = new Set(availableCrypto)
+  selectedCrypto = new Set(
+    Array.from(selectedCrypto).filter(crypto => availableCryptoSet.has(crypto))
+  )
+  if (isInitial && selectedCrypto.size === 0) {
+    availableCrypto.forEach(crypto => selectedCrypto.add(crypto))
+  }
+  renderCryptoFilters(availableCrypto)
 }
 
 const printStats = (transactions) => {
@@ -139,11 +201,26 @@ const updateStats = (isInitial = false) => {
   const activeStoredTransactions = storedTransactions.filter(file => file.active)
 
   exchangeFilterMngmt(activeStoredTransactions, isInitial)
+  cryptoFilterMngmt(activeStoredTransactions, isInitial)
 
   const filteredStoredTransactions = activeStoredTransactions.filter(file => {
     if (!file.exchange) return false
-    return selectedExchanges.has(file.exchange)
+    if (!file.data) return false
+    return selectedExchanges.has(file.exchange) &&
+    file.data.some(transaction => 
+      (transaction.baseAsset && selectedCrypto.has(transaction.baseAsset)) ||
+      (transaction.quoteAsset && selectedCrypto.has(transaction.quoteAsset))
+    )
   })
+
+  if(selectedCrypto.size !== 0) {
+    filteredStoredTransactions.forEach(file => {
+      file.data = file.data.filter(transaction => 
+        (transaction.baseAsset && selectedCrypto.has(transaction.baseAsset)) ||
+        (transaction.quoteAsset && selectedCrypto.has(transaction.quoteAsset))
+      )
+    })
+  }
 
   printStats(filteredStoredTransactions)
   
