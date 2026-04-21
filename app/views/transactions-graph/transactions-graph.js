@@ -1,5 +1,6 @@
 import {
   sessionStorageKey,
+  filteredStoredTransactionsKey,
   updatedStoreEvent
 } from '../../scripts/globals.js'
 
@@ -7,13 +8,17 @@ const graphWrapper = document.getElementById('transactions-graph-container')
 
 const buildTransactionsGraph = () => {
   if (!graphWrapper) return
-  graphWrapper.innerHTML = '' 
 
   const storedTransactions = JSON.parse(sessionStorage.getItem(sessionStorageKey)) || []
   const activeStoredTransactions = storedTransactions.filter(file => file.active)
 
+  const filteredStoredTransactions = 
+    JSON.parse(sessionStorage.getItem(filteredStoredTransactionsKey)) || 
+    activeStoredTransactions
+
   const emptyMessage = graphWrapper.dataset.emptyMessage || 'No transactions available'
-  const hasTransactions = activeStoredTransactions.length > 0
+  const hasTransactions = filteredStoredTransactions.length > 0
+  //
 
   if (!hasTransactions) {
     const emptyCaseMessage = `<p>${emptyMessage}</p>`
@@ -21,7 +26,7 @@ const buildTransactionsGraph = () => {
     return
   }
 
-  activeStoredTransactions.forEach(file => {
+  filteredStoredTransactions.forEach(file => {
     const $section = document.createElement('section')
     $section.className = 'graph-section'
     const $title = document.createElement('h3')
