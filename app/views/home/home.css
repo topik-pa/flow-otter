@@ -37,6 +37,15 @@
   font-size: var(--font-size-huge);
 }
 
+#home #charts > div {
+  display: flex;
+  justify-content: space-between;
+}
+#home #charts canvas {
+  max-width: 48%;
+  height: auto !important;
+}
+
 @media screen and (max-width: 768px) {}
 
 @media screen and (max-width: 412px) {

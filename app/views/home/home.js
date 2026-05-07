@@ -28,8 +28,10 @@ const exchangeFilterMngmt = (transactions, isInitial) => {
     const $exchangeFilters = document.getElementById('exchange-filters')
     if (!$exchangeFilters) return
 
+    // Clear existing filters
     $exchangeFilters.replaceChildren()
 
+    // If no exchanges are available, show a placeholder
     if (availableExchanges.length === 0) {
       const $empty = document.createElement('span')
       $empty.innerText = '-'
@@ -222,9 +224,101 @@ const updateStats = (isInitial = false) => {
     })
   }
 
+
+
   printStats(filteredStoredTransactions)
   
   sessionStorage.setItem(filteredStoredTransactionsKey, JSON.stringify(filteredStoredTransactions))
+
+  
+  function getCryptoUsage(transactions) {
+    const usage = {}
+    let total = 0
+    transactions.forEach(file => {
+      file.data.forEach(tx => {
+        [tx.baseAsset, tx.quoteAsset].forEach(asset => {
+          if (asset) {
+            usage[asset] = (usage[asset] || 0) + 1
+            total++
+          }
+        })
+      })
+    })
+    return { usage, total }
+  }
+  function renderCryptoUsagePie(transactions) {
+    const { usage, total } = getCryptoUsage(transactions)
+    const labels = Object.keys(usage)
+    const data = labels.map(label => usage[label])
+    const backgroundColors = [
+      '#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF', '#FF9F40', '#C9CBCF'
+    ]
+    // Destroy previous chart if exists
+    if (window.cryptoPieChart) {
+      window.cryptoPieChart.destroy()
+    }
+    // eslint-disable-next-line no-undef
+    
+    window.cryptoPieChart = new Chart(document.getElementById('crypto-usage-pie'), {
+      type: 'pie',
+      data: {
+        labels,
+        datasets: [{
+          data,
+          backgroundColor: backgroundColors
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: {
+            position: 'bottom'
+          },
+          title: {
+            display: true,
+            text: 'Crypto Usage'
+          }
+        }
+      }
+    })
+  }
+  function renderCryptoVolumeBar(transactions) {
+    const { usage } = getCryptoUsage(transactions)
+    const labels = Object.keys(usage)
+    const data = labels.map(label => usage[label])
+    const backgroundColors = [
+      '#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF', '#FF9F40', '#C9CBCF'
+    ]
+  
+    if (window.cryptoBarChart) {
+      window.cryptoBarChart.destroy()
+    }
+  
+    window.cryptoBarChart = new Chart(document.getElementById('crypto-volume-bar'), {
+      type: 'bar',
+      data: {
+        labels,
+        datasets: [{
+          label: 'Transaction Volume',
+          data,
+          backgroundColor: backgroundColors
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { display: false },
+          title: {
+            display: true,
+            text: 'Transaction Volume per Crypto'
+          }
+        }
+      }
+    })
+  }
+  
+  renderCryptoUsagePie(activeStoredTransactions)
+  renderCryptoVolumeBar(activeStoredTransactions)
 }
 
 export default  {

@@ -30,6 +30,8 @@ block append meta
   meta(name="description" content=__('proj_description'))
   meta(name="keywords" content=__('index.meta.keywords'))
 
+  script(src='/scripts/vendors/chartjs.min.js')
+
   link(rel="canonical", href=canonicalUrl)
   each link in hreflangs
     link(rel="alternate", hreflang=link.lang, href=link.url)
@@ -66,6 +68,12 @@ block main
       div 
         h3= __('home.stats.exchanges_list')
         span#exchanges-list
+
+  section#charts 
+    h2 Grafici...
+    div 
+      canvas#crypto-usage-pie
+      canvas#crypto-volume-bar
 
 block column 
   include ../components/shared/column/column.pug
