@@ -39,14 +39,36 @@
 
 #home #charts > div {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 #home #charts canvas {
-  max-width: 48%;
-  height: auto !important;
+  max-width: 380px;
+  max-height: 380px;
+  margin-bottom: var(--x-large-space);
 }
 
-@media screen and (max-width: 768px) {}
+@media screen and (max-width: 1366px) {
+  #home #charts canvas {
+    max-width: 320px;
+    max-height: 320px
+  }
+}
+@media screen and (max-width: 1366px) {
+  #home #charts canvas {
+    max-width: 280px;
+    max-height: 280px
+  }
+}
+@media screen and (max-width: 768px) {
+  #home #charts > div {
+    flex-direction: column;
+    align-items: center;
+  }
+  #home #charts canvas {
+    max-width: 320px;
+    max-height: 320px
+  }
+}
 
 @media screen and (max-width: 412px) {
   #home #stats>div>div {

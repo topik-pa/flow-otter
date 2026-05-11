@@ -12,12 +12,12 @@ const buildTransactionsTable = () => {
   const storedTransactions = JSON.parse(sessionStorage.getItem(sessionStorageKey)) || []
   const activeStoredTransactions = storedTransactions.filter(file => file.active)
 
-  const filteredStoredTransactions = 
-    JSON.parse(sessionStorage.getItem(filteredStoredTransactionsKey)) || 
-    activeStoredTransactions
+  // const filteredStoredTransactions = 
+  //   JSON.parse(sessionStorage.getItem(filteredStoredTransactionsKey)) || 
+  //   activeStoredTransactions
 
   const emptyMessage = tableWrapper.dataset.emptyMessage || 'No transactions available'
-  const hasTransactions = filteredStoredTransactions.length > 0
+  const hasTransactions = activeStoredTransactions.length > 0
   // const hasTransactions = storedTransactions.some(batch => Array.isArray(batch.data) && batch.data.length > 0)
 
   if (!hasTransactions) {
@@ -43,7 +43,7 @@ const buildTransactionsTable = () => {
       </thead>
       <tbody>
     `
-  for (const batch of filteredStoredTransactions) {
+  for (const batch of activeStoredTransactions) {
     if (!Array.isArray(batch.data)) continue
     for (const t of batch.data) {
       const date = new Date(t.ts)

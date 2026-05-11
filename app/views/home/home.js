@@ -11,129 +11,129 @@ import {
   updatedStoreEvent
 } from './../../scripts/globals.js'
 
-let selectedExchanges = new Set()
-let selectedCrypto = new Set()
+// let selectedExchanges = new Set()
+// let selectedCrypto = new Set()
 
-const exchangeFilterMngmt = (transactions, isInitial) => {
-  const getAvailableExchanges = (transactions) => {
-    const uniqueExchanges = new Set()
-    transactions.forEach(file => {
-      if (file.exchange) {
-        uniqueExchanges.add(file.exchange)
-      }
-    })
-    return Array.from(uniqueExchanges).sort()
-  }
-  const renderExchangeFilters = (availableExchanges) => {
-    const $exchangeFilters = document.getElementById('exchange-filters')
-    if (!$exchangeFilters) return
+// const exchangeFilterMngmt = (transactions, isInitial) => {
+//   const getAvailableExchanges = (transactions) => {
+//     const uniqueExchanges = new Set()
+//     transactions.forEach(file => {
+//       if (file.exchange) {
+//         uniqueExchanges.add(file.exchange)
+//       }
+//     })
+//     return Array.from(uniqueExchanges).sort()
+//   }
+//   const renderExchangeFilters = (availableExchanges) => {
+//     const $exchangeFilters = document.getElementById('exchange-filters')
+//     if (!$exchangeFilters) return
 
-    // Clear existing filters
-    $exchangeFilters.replaceChildren()
+//     // Clear existing filters
+//     $exchangeFilters.replaceChildren()
 
-    // If no exchanges are available, show a placeholder
-    if (availableExchanges.length === 0) {
-      const $empty = document.createElement('span')
-      $empty.innerText = '-'
-      $exchangeFilters.appendChild($empty)
-      return
-    }
+//     // If no exchanges are available, show a placeholder
+//     if (availableExchanges.length === 0) {
+//       const $empty = document.createElement('span')
+//       $empty.innerText = '-'
+//       $exchangeFilters.appendChild($empty)
+//       return
+//     }
 
-    availableExchanges.forEach(exchange => {
-      const $label = document.createElement('label')
+//     availableExchanges.forEach(exchange => {
+//       const $label = document.createElement('label')
 
-      const $checkbox = document.createElement('input')
-      $checkbox.type = 'checkbox'
-      $checkbox.value = exchange
-      $checkbox.checked = selectedExchanges.has(exchange)
-      $checkbox.addEventListener('change', () => {
-        if ($checkbox.checked) {
-          selectedExchanges.add(exchange)
-        } else {
-          selectedExchanges.delete(exchange)
-        }
-        updateStats()
-      })
+//       const $checkbox = document.createElement('input')
+//       $checkbox.type = 'checkbox'
+//       $checkbox.value = exchange
+//       $checkbox.checked = selectedExchanges.has(exchange)
+//       $checkbox.addEventListener('change', () => {
+//         if ($checkbox.checked) {
+//           selectedExchanges.add(exchange)
+//         } else {
+//           selectedExchanges.delete(exchange)
+//         }
+//         updateStats()
+//       })
 
-      const $text = document.createElement('span')
-      $text.innerText = exchange
+//       const $text = document.createElement('span')
+//       $text.innerText = exchange
 
-      $label.appendChild($checkbox)
-      $label.appendChild($text)
-      $exchangeFilters.appendChild($label)
-    })
-  }
-  const availableExchanges = getAvailableExchanges(transactions)
-  const availableExchangesSet = new Set(availableExchanges)
-  selectedExchanges = new Set(
-    Array.from(selectedExchanges).filter(exchange => availableExchangesSet.has(exchange))
-  )
-  if (isInitial && selectedExchanges.size === 0) {
-    availableExchanges.forEach(exchange => selectedExchanges.add(exchange))
-  }
-  renderExchangeFilters(availableExchanges)
-}
+//       $label.appendChild($checkbox)
+//       $label.appendChild($text)
+//       $exchangeFilters.appendChild($label)
+//     })
+//   }
+//   const availableExchanges = getAvailableExchanges(transactions)
+//   const availableExchangesSet = new Set(availableExchanges)
+//   selectedExchanges = new Set(
+//     Array.from(selectedExchanges).filter(exchange => availableExchangesSet.has(exchange))
+//   )
+//   if (isInitial && selectedExchanges.size === 0) {
+//     availableExchanges.forEach(exchange => selectedExchanges.add(exchange))
+//   }
+//   renderExchangeFilters(availableExchanges)
+// }
 
-const cryptoFilterMngmt = (transactions, isInitial) => {
-  const getAvailableCrypto = (transactions) => {
-    const uniqueCrypto = new Set()
-    transactions.forEach(file => {
-      file.data.forEach(transaction => {
-        if (transaction.baseAsset && transaction.quoteAsset) {  
-          uniqueCrypto.add(transaction.baseAsset)
-          uniqueCrypto.add(transaction.quoteAsset)
-        }
-      })
-    })
-    return Array.from(uniqueCrypto).sort()
-  }
-  const renderCryptoFilters = (availableCrypto) => {
-    const $cryptoFilters = document.getElementById('crypto-filters')
-    if (!$cryptoFilters) return
+// const cryptoFilterMngmt = (transactions, isInitial) => {
+//   const getAvailableCrypto = (transactions) => {
+//     const uniqueCrypto = new Set()
+//     transactions.forEach(file => {
+//       file.data.forEach(transaction => {
+//         if (transaction.baseAsset && transaction.quoteAsset) {  
+//           uniqueCrypto.add(transaction.baseAsset)
+//           uniqueCrypto.add(transaction.quoteAsset)
+//         }
+//       })
+//     })
+//     return Array.from(uniqueCrypto).sort()
+//   }
+//   const renderCryptoFilters = (availableCrypto) => {
+//     const $cryptoFilters = document.getElementById('crypto-filters')
+//     if (!$cryptoFilters) return
 
-    $cryptoFilters.replaceChildren()
+//     $cryptoFilters.replaceChildren()
 
-    if (availableCrypto.length === 0) {
-      const $empty = document.createElement('span')
-      $empty.innerText = '-'
-      $cryptoFilters.appendChild($empty)
-      return
-    }
+//     if (availableCrypto.length === 0) {
+//       const $empty = document.createElement('span')
+//       $empty.innerText = '-'
+//       $cryptoFilters.appendChild($empty)
+//       return
+//     }
 
-    availableCrypto.forEach(crypto => {
-      const $label = document.createElement('label')
+//     availableCrypto.forEach(crypto => {
+//       const $label = document.createElement('label')
 
-      const $checkbox = document.createElement('input')
-      $checkbox.type = 'checkbox'
-      $checkbox.value = crypto
-      $checkbox.checked = selectedCrypto.has(crypto)
-      $checkbox.addEventListener('change', () => {
-        if ($checkbox.checked) {
-          selectedCrypto.add(crypto)
-        } else {
-          selectedCrypto.delete(crypto)
-        }
-        updateStats()
-      })
+//       const $checkbox = document.createElement('input')
+//       $checkbox.type = 'checkbox'
+//       $checkbox.value = crypto
+//       $checkbox.checked = selectedCrypto.has(crypto)
+//       $checkbox.addEventListener('change', () => {
+//         if ($checkbox.checked) {
+//           selectedCrypto.add(crypto)
+//         } else {
+//           selectedCrypto.delete(crypto)
+//         }
+//         updateStats()
+//       })
 
-      const $text = document.createElement('span')
-      $text.innerText = crypto
+//       const $text = document.createElement('span')
+//       $text.innerText = crypto
 
-      $label.appendChild($checkbox)
-      $label.appendChild($text)
-      $cryptoFilters.appendChild($label)
-    })
-  }
-  const availableCrypto = getAvailableCrypto(transactions)
-  const availableCryptoSet = new Set(availableCrypto)
-  selectedCrypto = new Set(
-    Array.from(selectedCrypto).filter(crypto => availableCryptoSet.has(crypto))
-  )
-  if (isInitial && selectedCrypto.size === 0) {
-    availableCrypto.forEach(crypto => selectedCrypto.add(crypto))
-  }
-  renderCryptoFilters(availableCrypto)
-}
+//       $label.appendChild($checkbox)
+//       $label.appendChild($text)
+//       $cryptoFilters.appendChild($label)
+//     })
+//   }
+//   const availableCrypto = getAvailableCrypto(transactions)
+//   const availableCryptoSet = new Set(availableCrypto)
+//   selectedCrypto = new Set(
+//     Array.from(selectedCrypto).filter(crypto => availableCryptoSet.has(crypto))
+//   )
+//   if (isInitial && selectedCrypto.size === 0) {
+//     availableCrypto.forEach(crypto => selectedCrypto.add(crypto))
+//   }
+//   renderCryptoFilters(availableCrypto)
+// }
 
 const printStats = (transactions) => {
   function countUniqueCrypto(transactions) {
@@ -198,45 +198,44 @@ const printStats = (transactions) => {
   $exchangesList.innerText = exchangeStats.exchanges.join(', ')
 }
 
-const updateStats = (isInitial = false) => {
-  const storedTransactions = JSON.parse(sessionStorage.getItem(sessionStorageKey)) || []
-  const activeStoredTransactions = storedTransactions.filter(file => file.active)
-
-  exchangeFilterMngmt(activeStoredTransactions, isInitial)
-  cryptoFilterMngmt(activeStoredTransactions, isInitial)
-
-  const filteredStoredTransactions = activeStoredTransactions.filter(file => {
-    if (!file.exchange) return false
-    if (!file.data) return false
-    return selectedExchanges.has(file.exchange) &&
-    file.data.some(transaction => 
-      (transaction.baseAsset && selectedCrypto.has(transaction.baseAsset)) ||
-      (transaction.quoteAsset && selectedCrypto.has(transaction.quoteAsset))
-    )
-  })
-
-  if(selectedCrypto.size !== 0) {
-    filteredStoredTransactions.forEach(file => {
-      file.data = file.data.filter(transaction => 
-        (transaction.baseAsset && selectedCrypto.has(transaction.baseAsset)) ||
-        (transaction.quoteAsset && selectedCrypto.has(transaction.quoteAsset))
-      )
-    })
-  }
-
-
-
-  printStats(filteredStoredTransactions)
-  
-  sessionStorage.setItem(filteredStoredTransactionsKey, JSON.stringify(filteredStoredTransactions))
-
-  
-  function getCryptoUsage(transactions) {
+const printGraphs = (transactions) => {
+  const $charts = document.getElementById('charts')
+  // function getCryptoUsage(transactions) {
+  //   const usage = {}
+  //   let total = 0
+  //   transactions.forEach(file => {
+  //     file.data.forEach(tx => {
+  //       [tx.baseAsset, tx.quoteAsset].forEach(asset => {
+  //         if (asset) {
+  //           usage[asset] = (usage[asset] || 0) + 1
+  //           total++
+  //         }
+  //       })
+  //     })
+  //   })
+  //   return { usage, total }
+  // }
+  function getCryptoUsageBase(transactions) {
     const usage = {}
     let total = 0
     transactions.forEach(file => {
       file.data.forEach(tx => {
-        [tx.baseAsset, tx.quoteAsset].forEach(asset => {
+        [tx.baseAsset].forEach(asset => {
+          if (asset) {
+            usage[asset] = (usage[asset] || 0) + 1
+            total++
+          }
+        })
+      })
+    })
+    return { usage, total }
+  }
+  function getCryptoUsageQuote(transactions) {
+    const usage = {}
+    let total = 0
+    transactions.forEach(file => {
+      file.data.forEach(tx => {
+        [tx.quoteAsset].forEach(asset => {
           if (asset) {
             usage[asset] = (usage[asset] || 0) + 1
             total++
@@ -247,9 +246,13 @@ const updateStats = (isInitial = false) => {
     return { usage, total }
   }
   function renderCryptoUsagePie(transactions) {
-    const { usage, total } = getCryptoUsage(transactions)
+    const $target = document.getElementById('crypto-usage-pie')
+    if(!$target) return
+    const { usage } = getCryptoUsageBase(transactions)
+    // debugger
     const labels = Object.keys(usage)
     const data = labels.map(label => usage[label])
+
     const backgroundColors = [
       '#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF', '#FF9F40', '#C9CBCF'
     ]
@@ -258,8 +261,7 @@ const updateStats = (isInitial = false) => {
       window.cryptoPieChart.destroy()
     }
     // eslint-disable-next-line no-undef
-    
-    window.cryptoPieChart = new Chart(document.getElementById('crypto-usage-pie'), {
+    window.cryptoPieChart = new Chart($target, {
       type: 'pie',
       data: {
         labels,
@@ -276,16 +278,19 @@ const updateStats = (isInitial = false) => {
           },
           title: {
             display: true,
-            text: 'Crypto Usage'
+            text: 'Base asset crypto usage'
           }
         }
       }
     })
   }
   function renderCryptoVolumeBar(transactions) {
-    const { usage } = getCryptoUsage(transactions)
+    const $target = document.getElementById('crypto-volume-bar')
+    if(!$target) return
+    const { usage } = getCryptoUsageQuote(transactions)
     const labels = Object.keys(usage)
     const data = labels.map(label => usage[label])
+
     const backgroundColors = [
       '#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF', '#FF9F40', '#C9CBCF'
     ]
@@ -294,7 +299,8 @@ const updateStats = (isInitial = false) => {
       window.cryptoBarChart.destroy()
     }
   
-    window.cryptoBarChart = new Chart(document.getElementById('crypto-volume-bar'), {
+    // eslint-disable-next-line no-undef
+    window.cryptoBarChart = new Chart($target, {
       type: 'bar',
       data: {
         labels,
@@ -310,15 +316,59 @@ const updateStats = (isInitial = false) => {
           legend: { display: false },
           title: {
             display: true,
-            text: 'Transaction Volume per Crypto'
+            text: 'Quote asset transaction volume'
           }
         }
       }
     })
   }
+  if(transactions.length === 0) {
+    if($charts) $charts.classList.add('hide')
+    if (window.cryptoPieChart) {
+      window.cryptoPieChart.destroy()
+    }
+    if (window.cryptoBarChart) {
+      window.cryptoBarChart.destroy()
+    }
+  } else {
+    if($charts) $charts.classList.remove('hide')
+    renderCryptoUsagePie(transactions)
+    renderCryptoVolumeBar(transactions)
+  }
+}
+
+const printTransactionsData = (isInitial = false) => {
+  const storedTransactions = JSON.parse(sessionStorage.getItem(sessionStorageKey)) || []
+  const activeStoredTransactions = storedTransactions.filter(file => file.active)
+
+  // exchangeFilterMngmt(activeStoredTransactions, isInitial)
+  // cryptoFilterMngmt(activeStoredTransactions, isInitial)
+
+  // const filteredStoredTransactions = activeStoredTransactions.filter(file => {
+  //   if (!file.exchange) return false
+  //   if (!file.data) return false
+  //   return selectedExchanges.has(file.exchange) &&
+  //   file.data.some(transaction => 
+  //     (transaction.baseAsset && selectedCrypto.has(transaction.baseAsset)) ||
+  //     (transaction.quoteAsset && selectedCrypto.has(transaction.quoteAsset))
+  //   )
+  // })
+
+  // if(selectedCrypto.size !== 0) {
+  //   filteredStoredTransactions.forEach(file => {
+  //     file.data = file.data.filter(transaction => 
+  //       (transaction.baseAsset && selectedCrypto.has(transaction.baseAsset)) ||
+  //       (transaction.quoteAsset && selectedCrypto.has(transaction.quoteAsset))
+  //     )
+  //   })
+  // }
+
+
+  printStats(activeStoredTransactions)
+  printGraphs(activeStoredTransactions)
   
-  renderCryptoUsagePie(activeStoredTransactions)
-  renderCryptoVolumeBar(activeStoredTransactions)
+  // sessionStorage.setItem(filteredStoredTransactionsKey, JSON.stringify(filteredStoredTransactions))
+
 }
 
 export default  {
@@ -333,9 +383,9 @@ export default  {
       // console.error('Error adopting style sheets:', err)
     }
 
-    updateStats('page-loaded')
+    printTransactionsData('page-loaded')
     window.addEventListener(updatedStoreEvent, () => {
-      updateStats()
+      printTransactionsData()
     })
   }
 }

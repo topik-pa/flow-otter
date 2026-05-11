@@ -12,12 +12,12 @@ const buildTransactionsGraph = () => {
   const storedTransactions = JSON.parse(sessionStorage.getItem(sessionStorageKey)) || []
   const activeStoredTransactions = storedTransactions.filter(file => file.active)
 
-  const filteredStoredTransactions = 
-    JSON.parse(sessionStorage.getItem(filteredStoredTransactionsKey)) || 
-    activeStoredTransactions
+  // const filteredStoredTransactions = 
+  //   JSON.parse(sessionStorage.getItem(filteredStoredTransactionsKey)) || 
+  //   activeStoredTransactions
 
   const emptyMessage = graphWrapper.dataset.emptyMessage || 'No transactions available'
-  const hasTransactions = filteredStoredTransactions.length > 0
+  const hasTransactions = activeStoredTransactions.length > 0
   //
 
   if (!hasTransactions) {
@@ -26,7 +26,7 @@ const buildTransactionsGraph = () => {
     return
   }
 
-  filteredStoredTransactions.forEach(file => {
+  activeStoredTransactions.forEach(file => {
     const $section = document.createElement('section')
     $section.className = 'graph-section'
     const $title = document.createElement('h3')
