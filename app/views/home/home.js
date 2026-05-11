@@ -200,61 +200,38 @@ const printStats = (transactions) => {
 
 const printGraphs = (transactions) => {
   const $charts = document.getElementById('charts')
-  // function getCryptoUsage(transactions) {
-  //   const usage = {}
-  //   let total = 0
-  //   transactions.forEach(file => {
-  //     file.data.forEach(tx => {
-  //       [tx.baseAsset, tx.quoteAsset].forEach(asset => {
-  //         if (asset) {
-  //           usage[asset] = (usage[asset] || 0) + 1
-  //           total++
-  //         }
-  //       })
-  //     })
-  //   })
-  //   return { usage, total }
-  // }
-  function getCryptoUsageBase(transactions) {
+  function getCryptoUsage(transactions) {
     const usage = {}
+    const baseUsage = {}
+    const quoteUsage = {}
     let total = 0
     transactions.forEach(file => {
       file.data.forEach(tx => {
-        [tx.baseAsset].forEach(asset => {
+        [tx.baseAsset, tx.quoteAsset].forEach(asset => {
           if (asset) {
             usage[asset] = (usage[asset] || 0) + 1
             total++
           }
         })
+        if (tx.baseAsset) {
+          baseUsage[tx.baseAsset] = (baseUsage[tx.baseAsset] || 0) + 1
+        }
+        if (tx.quoteAsset) {
+          quoteUsage[tx.quoteAsset] = (quoteUsage[tx.quoteAsset] || 0) + 1
+        }
       })
     })
-    return { usage, total }
-  }
-  function getCryptoUsageQuote(transactions) {
-    const usage = {}
-    let total = 0
-    transactions.forEach(file => {
-      file.data.forEach(tx => {
-        [tx.quoteAsset].forEach(asset => {
-          if (asset) {
-            usage[asset] = (usage[asset] || 0) + 1
-            total++
-          }
-        })
-      })
-    })
-    return { usage, total }
+    return { usage, baseUsage, quoteUsage, total }
   }
   function renderCryptoUsagePie(transactions) {
     const $target = document.getElementById('crypto-usage-pie')
     if(!$target) return
-    const { usage } = getCryptoUsageBase(transactions)
-    // debugger
-    const labels = Object.keys(usage)
-    const data = labels.map(label => usage[label])
+    const { baseUsage } = getCryptoUsage(transactions)
+    const labels = Object.keys(baseUsage)
+    const data = labels.map(label => baseUsage[label])
 
     const backgroundColors = [
-      '#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF', '#FF9F40', '#C9CBCF'
+      '#773621', '#377721', '#216277', '#622177', '#627721', '#627721', '#216277', '#372177'
     ]
     // Destroy previous chart if exists
     if (window.cryptoPieChart) {
@@ -287,12 +264,12 @@ const printGraphs = (transactions) => {
   function renderCryptoVolumeBar(transactions) {
     const $target = document.getElementById('crypto-volume-bar')
     if(!$target) return
-    const { usage } = getCryptoUsageQuote(transactions)
-    const labels = Object.keys(usage)
-    const data = labels.map(label => usage[label])
+    const { quoteUsage } = getCryptoUsage(transactions)
+    const labels = Object.keys(quoteUsage)
+    const data = labels.map(label => quoteUsage[label])
 
     const backgroundColors = [
-      '#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF', '#FF9F40', '#C9CBCF'
+      '#773621', '#217762', '#213777', '#773721', '#217737', '#372177', '#216277'
     ]
   
     if (window.cryptoBarChart) {
