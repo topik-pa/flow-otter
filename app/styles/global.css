@@ -84,6 +84,13 @@ small {
   text-align: center;
 }
 
+.red {
+  color: var(--red)
+}
+.green {
+  color: var(--green)
+}
+
 main {
   padding: var(--main-padding);
 }

@@ -51,13 +51,14 @@ const buildTransactionsTable = () => {
         day: '2-digit', month: '2-digit', year: 'numeric',
         hour: '2-digit', minute: '2-digit', second: '2-digit'
       })
+      const typeClass = t.type === 'BUY' ? 'green' : 'red'
       tableHTML += `
           <tr>
             <td>${t.orderNo}</td>
             <td data-order="${t.ts}">${formattedDate}</td>
             <td>${batch.exchange}</td>
             <td>${t.pair}</td>
-            <td>${t.type}</td>
+            <td class="${typeClass}">${t.type}</td>
             <td>${t.orderPrice}</td>
             <td>${t.orderAmount}</td>
             <td>${t.avgTradingPrice}</td>
