@@ -9,15 +9,35 @@ const graphWrapper = document.getElementById('transactions-graph-container')
 const buildTransactionsGraph = () => {
   if (!graphWrapper) return
 
+  const getFilteredTransactions = () => {
+    const filters = JSON.parse(sessionStorage.getItem('filters')) || {}
+    const selectedExchanges = filters.exchanges ? 
+      Object.keys(filters.exchanges).filter(exchange => filters.exchanges[exchange]) : []
+    const selectedCryptos = filters.cryptos ? 
+      Object.keys(filters.cryptos).filter(crypto => filters.cryptos[crypto]) : []
+    const filteredStoredTransactions = activeStoredTransactions.filter(file => {
+      return selectedExchanges.includes(file.exchange)
+    })
+    filteredStoredTransactions.forEach(file => {
+      file.data = file.data.filter(transaction => {
+        return (transaction.baseAsset && selectedCryptos.includes(transaction.baseAsset)) &&
+        (transaction.quoteAsset && selectedCryptos.includes(transaction.quoteAsset))
+      })
+    })
+    return filteredStoredTransactions
+  }
+
   const storedTransactions = JSON.parse(sessionStorage.getItem(sessionStorageKey)) || []
   const activeStoredTransactions = storedTransactions.filter(file => file.active)
+
+  const filteredStoredTransactions = getFilteredTransactions()
 
   // const filteredStoredTransactions = 
   //   JSON.parse(sessionStorage.getItem(filteredStoredTransactionsKey)) || 
   //   activeStoredTransactions
 
   const emptyMessage = graphWrapper.dataset.emptyMessage || 'No transactions available'
-  const hasTransactions = activeStoredTransactions.length > 0
+  const hasTransactions = filteredStoredTransactions.length > 0
   //
 
   if (!hasTransactions) {
@@ -26,7 +46,7 @@ const buildTransactionsGraph = () => {
     return
   }
 
-  activeStoredTransactions.forEach(file => {
+  filteredStoredTransactions.forEach(file => {
     const $section = document.createElement('section')
     $section.className = 'graph-section'
     const $title = document.createElement('h3')

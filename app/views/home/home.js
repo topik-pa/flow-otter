@@ -7,140 +7,15 @@
  */
 import {
   sessionStorageKey,
-  filteredStoredTransactionsKey,
   updatedStoreEvent
 } from './../../scripts/globals.js'
 
-// let selectedExchanges = new Set()
-// let selectedCrypto = new Set()
-
-// const exchangeFilterMngmt = (transactions, isInitial) => {
-//   const getAvailableExchanges = (transactions) => {
-//     const uniqueExchanges = new Set()
-//     transactions.forEach(file => {
-//       if (file.exchange) {
-//         uniqueExchanges.add(file.exchange)
-//       }
-//     })
-//     return Array.from(uniqueExchanges).sort()
-//   }
-//   const renderExchangeFilters = (availableExchanges) => {
-//     const $exchangeFilters = document.getElementById('exchange-filters')
-//     if (!$exchangeFilters) return
-
-//     // Clear existing filters
-//     $exchangeFilters.replaceChildren()
-
-//     // If no exchanges are available, show a placeholder
-//     if (availableExchanges.length === 0) {
-//       const $empty = document.createElement('span')
-//       $empty.innerText = '-'
-//       $exchangeFilters.appendChild($empty)
-//       return
-//     }
-
-//     availableExchanges.forEach(exchange => {
-//       const $label = document.createElement('label')
-
-//       const $checkbox = document.createElement('input')
-//       $checkbox.type = 'checkbox'
-//       $checkbox.value = exchange
-//       $checkbox.checked = selectedExchanges.has(exchange)
-//       $checkbox.addEventListener('change', () => {
-//         if ($checkbox.checked) {
-//           selectedExchanges.add(exchange)
-//         } else {
-//           selectedExchanges.delete(exchange)
-//         }
-//         updateStats()
-//       })
-
-//       const $text = document.createElement('span')
-//       $text.innerText = exchange
-
-//       $label.appendChild($checkbox)
-//       $label.appendChild($text)
-//       $exchangeFilters.appendChild($label)
-//     })
-//   }
-//   const availableExchanges = getAvailableExchanges(transactions)
-//   const availableExchangesSet = new Set(availableExchanges)
-//   selectedExchanges = new Set(
-//     Array.from(selectedExchanges).filter(exchange => availableExchangesSet.has(exchange))
-//   )
-//   if (isInitial && selectedExchanges.size === 0) {
-//     availableExchanges.forEach(exchange => selectedExchanges.add(exchange))
-//   }
-//   renderExchangeFilters(availableExchanges)
-// }
-
-// const cryptoFilterMngmt = (transactions, isInitial) => {
-//   const getAvailableCrypto = (transactions) => {
-//     const uniqueCrypto = new Set()
-//     transactions.forEach(file => {
-//       file.data.forEach(transaction => {
-//         if (transaction.baseAsset && transaction.quoteAsset) {  
-//           uniqueCrypto.add(transaction.baseAsset)
-//           uniqueCrypto.add(transaction.quoteAsset)
-//         }
-//       })
-//     })
-//     return Array.from(uniqueCrypto).sort()
-//   }
-//   const renderCryptoFilters = (availableCrypto) => {
-//     const $cryptoFilters = document.getElementById('crypto-filters')
-//     if (!$cryptoFilters) return
-
-//     $cryptoFilters.replaceChildren()
-
-//     if (availableCrypto.length === 0) {
-//       const $empty = document.createElement('span')
-//       $empty.innerText = '-'
-//       $cryptoFilters.appendChild($empty)
-//       return
-//     }
-
-//     availableCrypto.forEach(crypto => {
-//       const $label = document.createElement('label')
-
-//       const $checkbox = document.createElement('input')
-//       $checkbox.type = 'checkbox'
-//       $checkbox.value = crypto
-//       $checkbox.checked = selectedCrypto.has(crypto)
-//       $checkbox.addEventListener('change', () => {
-//         if ($checkbox.checked) {
-//           selectedCrypto.add(crypto)
-//         } else {
-//           selectedCrypto.delete(crypto)
-//         }
-//         updateStats()
-//       })
-
-//       const $text = document.createElement('span')
-//       $text.innerText = crypto
-
-//       $label.appendChild($checkbox)
-//       $label.appendChild($text)
-//       $cryptoFilters.appendChild($label)
-//     })
-//   }
-//   const availableCrypto = getAvailableCrypto(transactions)
-//   const availableCryptoSet = new Set(availableCrypto)
-//   selectedCrypto = new Set(
-//     Array.from(selectedCrypto).filter(crypto => availableCryptoSet.has(crypto))
-//   )
-//   if (isInitial && selectedCrypto.size === 0) {
-//     availableCrypto.forEach(crypto => selectedCrypto.add(crypto))
-//   }
-//   renderCryptoFilters(availableCrypto)
-// }
 
 const printStats = (transactions) => {
   function countUniqueCrypto(transactions) {
     const uniqueCryptos = new Set()
     transactions.forEach(file => {
       file.data.forEach(transaction => {
-      // Further processing can be done here if needed
         if (transaction.baseAsset) {
           uniqueCryptos.add(transaction.baseAsset)
         }
@@ -157,7 +32,6 @@ const printStats = (transactions) => {
   function countUniqueExchanges(transactions) {
     const uniqueExchanges = new Set()
     transactions.forEach(file => {
-      // Further processing can be done here if needed
       if (file.exchange) {
         uniqueExchanges.add(file.exchange)
       }
@@ -196,6 +70,123 @@ const printStats = (transactions) => {
   const exchangeStats = countUniqueExchanges(transactions)
   $exchangesCount.innerText = exchangeStats.count
   $exchangesList.innerText = exchangeStats.exchanges.join(', ')
+}
+
+const printFilters = (transactions) => {
+  // console.log('Updating filters ')
+  const getAvailableFilters = () => {
+    const uniqueExchangeFilters = new Set()
+    const uniqueCryptoFilters = new Set()
+    transactions.forEach(file => {
+      if (file.exchange) {
+        uniqueExchangeFilters.add(file.exchange)
+      }
+      file.data.forEach(transaction => {
+        if (transaction.baseAsset && transaction.quoteAsset) {  
+          uniqueCryptoFilters.add(transaction.baseAsset)
+          uniqueCryptoFilters.add(transaction.quoteAsset)
+        }
+      })
+    })
+    const availableExchanges = Array.from(uniqueExchangeFilters).sort()
+    const availableCryptos = Array.from(uniqueCryptoFilters).sort()
+    return { availableExchanges, availableCryptos }
+  }
+  const filterMngmt = () => {
+    const filters = JSON.parse(sessionStorage.getItem('filters')) || {}
+    const { availableExchanges, availableCryptos } = getAvailableFilters()
+    availableExchanges.forEach(exchange => {
+      if (!filters.exchanges || filters.exchanges[exchange] === undefined) {
+        filters.exchanges = filters.exchanges || {}
+        filters.exchanges[exchange] = true
+      }
+    })
+    availableCryptos.forEach(crypto => {
+      if (!filters.cryptos || filters.cryptos[crypto] === undefined) {
+        filters.cryptos = filters.cryptos || {}
+        filters.cryptos[crypto] = true
+      }
+    })
+    if (filters.exchanges) {
+      for (const exchange of Object.keys(filters.exchanges)) {
+        if (!availableExchanges.includes(exchange)) {
+          delete filters.exchanges[exchange]
+        }
+      }
+    }   if (filters.cryptos) {
+      for (const crypto of Object.keys(filters.cryptos)) {
+        if (!availableCryptos.includes(crypto)) {
+          delete filters.cryptos[crypto]
+        }
+      }
+    }
+    sessionStorage.setItem('filters', JSON.stringify(filters))
+  }
+  const renderFilters = () => {
+    const $exchangeFilters = document.getElementById('exchange-filters')
+    const $cryptoFilters = document.getElementById('crypto-filters')
+    if(!$exchangeFilters || !$cryptoFilters) return
+
+    // Clear existing filters
+    $exchangeFilters.replaceChildren()
+    $cryptoFilters.replaceChildren()
+    const filters = JSON.parse(sessionStorage.getItem('filters')) || {}
+    // If no exchanges are available, show a placeholder
+    if (!filters.exchanges || Object.keys(filters.exchanges).length === 0) {
+      const $empty = document.createElement('span')
+      $empty.innerText = '-'
+      $exchangeFilters.appendChild($empty)
+    }
+    if (!filters.cryptos || Object.keys(filters.cryptos).length === 0) {
+      const $empty = document.createElement('span')
+      $empty.innerText = '-'
+      $cryptoFilters.appendChild($empty)
+    }
+    if (filters.exchanges) {
+      for (const exchange of Object.keys(filters.exchanges)) {
+        const $label = document.createElement('label')
+        const $checkbox = document.createElement('input')
+        $checkbox.type = 'checkbox'
+        $checkbox.value = exchange
+        $checkbox.checked = filters.exchanges[exchange]
+        $checkbox.addEventListener('change', () => {
+          filters.exchanges = filters.exchanges || {}
+          filters.exchanges[exchange] = $checkbox.checked
+          sessionStorage.setItem('filters', JSON.stringify(filters))
+          window.dispatchEvent(new Event(updatedStoreEvent))
+        })
+        const $text = document.createElement('span')
+        $text.innerText = exchange
+        $label.appendChild($checkbox)
+        $label.appendChild($text)
+        $exchangeFilters.appendChild($label)
+      }
+    }
+    if (filters.cryptos) {
+      for (const crypto of Object.keys(filters.cryptos)) {
+        const $label = document.createElement('label')
+        const $checkbox = document.createElement('input')
+        $checkbox.type = 'checkbox'
+        $checkbox.value = crypto
+        $checkbox.checked = filters.cryptos[crypto]
+        $checkbox.addEventListener('change', () => {
+          filters.cryptos = filters.cryptos || {}
+          filters.cryptos[crypto] = $checkbox.checked
+          sessionStorage.setItem('filters', JSON.stringify(filters))
+          window.dispatchEvent(new Event(updatedStoreEvent))
+        })
+        const $text = document.createElement('span')
+        $text.innerText = crypto
+        $label.appendChild($checkbox)
+        $label.appendChild($text)
+        $cryptoFilters.appendChild($label)
+      }
+    }
+    
+  }
+
+  filterMngmt()
+  renderFilters()
 }
 
 const printGraphs = (transactions) => {
@@ -314,38 +305,34 @@ const printGraphs = (transactions) => {
   }
 }
 
-const printTransactionsData = (isInitial = false) => {
+const printTransactionsData = () => {
+  const getFilteredTransactions = () => {
+    const filters = JSON.parse(sessionStorage.getItem('filters')) || {}
+    const selectedExchanges = filters.exchanges ? 
+      Object.keys(filters.exchanges).filter(exchange => filters.exchanges[exchange]) : []
+    const selectedCryptos = filters.cryptos ? 
+      Object.keys(filters.cryptos).filter(crypto => filters.cryptos[crypto]) : []
+    const filteredStoredTransactions = activeStoredTransactions.filter(file => {
+      return selectedExchanges.includes(file.exchange)
+    })
+    filteredStoredTransactions.forEach(file => {
+      file.data = file.data.filter(transaction => {
+        return (transaction.baseAsset && selectedCryptos.includes(transaction.baseAsset)) &&
+        (transaction.quoteAsset && selectedCryptos.includes(transaction.quoteAsset))
+      })
+    })
+    return filteredStoredTransactions
+  }
   const storedTransactions = JSON.parse(sessionStorage.getItem(sessionStorageKey)) || []
   const activeStoredTransactions = storedTransactions.filter(file => file.active)
 
-  // exchangeFilterMngmt(activeStoredTransactions, isInitial)
-  // cryptoFilterMngmt(activeStoredTransactions, isInitial)
+  printFilters(activeStoredTransactions)
 
-  // const filteredStoredTransactions = activeStoredTransactions.filter(file => {
-  //   if (!file.exchange) return false
-  //   if (!file.data) return false
-  //   return selectedExchanges.has(file.exchange) &&
-  //   file.data.some(transaction => 
-  //     (transaction.baseAsset && selectedCrypto.has(transaction.baseAsset)) ||
-  //     (transaction.quoteAsset && selectedCrypto.has(transaction.quoteAsset))
-  //   )
-  // })
+  const filteredStoredTransactions = getFilteredTransactions()
 
-  // if(selectedCrypto.size !== 0) {
-  //   filteredStoredTransactions.forEach(file => {
-  //     file.data = file.data.filter(transaction => 
-  //       (transaction.baseAsset && selectedCrypto.has(transaction.baseAsset)) ||
-  //       (transaction.quoteAsset && selectedCrypto.has(transaction.quoteAsset))
-  //     )
-  //   })
-  // }
-
-
-  printStats(activeStoredTransactions)
-  printGraphs(activeStoredTransactions)
+  printStats(filteredStoredTransactions)
+  printGraphs(filteredStoredTransactions)
   
-  // sessionStorage.setItem(filteredStoredTransactionsKey, JSON.stringify(filteredStoredTransactions))
-
 }
 
 export default  {
@@ -360,7 +347,7 @@ export default  {
       // console.error('Error adopting style sheets:', err)
     }
 
-    printTransactionsData('page-loaded')
+    printTransactionsData()
     window.addEventListener(updatedStoreEvent, () => {
       printTransactionsData()
     })

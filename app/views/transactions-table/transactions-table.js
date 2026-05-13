@@ -9,15 +9,35 @@ const tableWrapper = document.getElementById('transactions-table-container')
 const buildTransactionsTable = () => {
   if (!tableWrapper) return
 
+  const getFilteredTransactions = () => {
+    const filters = JSON.parse(sessionStorage.getItem('filters')) || {}
+    const selectedExchanges = filters.exchanges ? 
+      Object.keys(filters.exchanges).filter(exchange => filters.exchanges[exchange]) : []
+    const selectedCryptos = filters.cryptos ? 
+      Object.keys(filters.cryptos).filter(crypto => filters.cryptos[crypto]) : []
+    const filteredStoredTransactions = activeStoredTransactions.filter(file => {
+      return selectedExchanges.includes(file.exchange)
+    })
+    filteredStoredTransactions.forEach(file => {
+      file.data = file.data.filter(transaction => {
+        return (transaction.baseAsset && selectedCryptos.includes(transaction.baseAsset)) &&
+        (transaction.quoteAsset && selectedCryptos.includes(transaction.quoteAsset))
+      })
+    })
+    return filteredStoredTransactions
+  }
+
   const storedTransactions = JSON.parse(sessionStorage.getItem(sessionStorageKey)) || []
   const activeStoredTransactions = storedTransactions.filter(file => file.active)
+
+  const filteredStoredTransactions = getFilteredTransactions()
 
   // const filteredStoredTransactions = 
   //   JSON.parse(sessionStorage.getItem(filteredStoredTransactionsKey)) || 
   //   activeStoredTransactions
 
   const emptyMessage = tableWrapper.dataset.emptyMessage || 'No transactions available'
-  const hasTransactions = activeStoredTransactions.length > 0
+  const hasTransactions = filteredStoredTransactions.length > 0
   // const hasTransactions = storedTransactions.some(batch => Array.isArray(batch.data) && batch.data.length > 0)
 
   if (!hasTransactions) {
@@ -43,7 +63,7 @@ const buildTransactionsTable = () => {
       </thead>
       <tbody>
     `
-  for (const batch of activeStoredTransactions) {
+  for (const batch of filteredStoredTransactions) {
     if (!Array.isArray(batch.data)) continue
     for (const t of batch.data) {
       const date = new Date(t.ts)
