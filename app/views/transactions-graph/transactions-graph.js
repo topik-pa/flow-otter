@@ -46,6 +46,8 @@ const buildTransactionsGraph = () => {
     return
   }
 
+  graphWrapper.innerHTML = '' // Clear previous graph content
+
   filteredStoredTransactions.forEach(file => {
     const $section = document.createElement('section')
     $section.className = 'graph-section'
