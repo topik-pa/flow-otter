@@ -13,11 +13,46 @@
   "breadcrumbs": {
     "text": "You are on: "
   },
+  "index": {
+    "meta": {
+      "keywords": "crypto, transactions, dashboard, exchange, analytics"
+    }
+  },
   "home": {
     "meta": {
       "keywords": ""
     },
-    "title": "Home page"
+    "title": "Home page",
+    "filters": {
+      "title": "Filters",
+      "exchanges": "Exchanges",
+      "crypto": "Crypto"
+    },
+    "stats": {
+      "title": "Statistics",
+      "uploaded-transactions-files": "Uploaded transaction files",
+      "total-transactions": "Total transactions",
+      "cryptos_count": "Cryptocurrencies count",
+      "cryptos_list": "Cryptocurrencies list",
+      "exchanges_count": "Exchanges count",
+      "exchanges_list": "Exchanges list"
+    },
+    "graphs": {
+      "title": "Graphs"
+    },
+    "upload-csv": {
+      "upload-button": "Upload transactions"
+    }
+  },
+  "column": {
+    "drop": {
+      "title": "Upload file",
+      "file": "Drop a CSV/XLS file here or click to select"
+    },
+    "files": {
+      "title": "Uploaded files",
+      "nofiles": "No files uploaded yet"
+    }
   },
   "contacts": {
     "meta": {

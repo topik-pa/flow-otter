@@ -13,11 +13,46 @@
   "breadcrumbs": {
     "text": "Sei in: "
   },
+  "index": {
+    "meta": {
+      "keywords": "crypto, transazioni, dashboard, exchange, analisi"
+    }
+  },
   "home": {
     "meta": {
       "keywords": ""
     },
-    "title": "Home page"
+    "title": "Home page",
+    "filters": {
+      "title": "Filtri",
+      "exchanges": "Exchange",
+      "crypto": "Crypto"
+    },
+    "stats": {
+      "title": "Statistiche",
+      "uploaded-transactions-files": "File transazioni caricati",
+      "total-transactions": "Transazioni totali",
+      "cryptos_count": "Numero di criptovalute",
+      "cryptos_list": "Elenco criptovalute",
+      "exchanges_count": "Numero di exchange",
+      "exchanges_list": "Elenco exchange"
+    },
+    "graphs": {
+      "title": "Grafici"
+    },
+    "upload-csv": {
+      "upload-button": "Carica transazioni"
+    }
+  },
+  "column": {
+    "drop": {
+      "title": "Carica file",
+      "file": "Trascina qui un file CSV/XLS oppure clicca per selezionarlo"
+    },
+    "files": {
+      "title": "File caricati",
+      "nofiles": "Nessun file ancora caricato"
+    }
   },
   "contacts": {
     "meta": {
