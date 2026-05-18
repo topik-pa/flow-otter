@@ -100,14 +100,15 @@ class CmpBullet extends HTMLElement {
     this.shadow = this.attachShadow({ mode: 'open' })
     this.shadow.append(template.content.cloneNode(true))
     this.root = this.shadow.querySelector('div')
+    // Remove bullet from list and store when clicking the remove button
     this.root.querySelector('#remove').addEventListener('click', () => {
       const storedTransactions = JSON.parse(sessionStorage.getItem(sessionStorageKey)) || []
       const updatedTransactions = storedTransactions.filter(t => t.id !== this.getAttribute('id'))
       sessionStorage.setItem(sessionStorageKey, JSON.stringify(updatedTransactions))
-      const event = new Event(updatedStoreEvent)
-      window.dispatchEvent(event)
+      window.dispatchEvent(new Event(updatedStoreEvent))
       this.remove()
     })
+    // Toggle active status when clicking the toggle button
     this.root.querySelector('#toggle').addEventListener('click', () => {
       const storedTransactions = JSON.parse(sessionStorage.getItem(sessionStorageKey)) || []
       storedTransactions.map(t => {
@@ -116,8 +117,7 @@ class CmpBullet extends HTMLElement {
         }
       })
       sessionStorage.setItem(sessionStorageKey, JSON.stringify(storedTransactions))
-      const event = new Event(updatedStoreEvent)
-      window.dispatchEvent(event)
+      window.dispatchEvent(new Event(updatedStoreEvent))
     })
   }
 

@@ -65,8 +65,7 @@ const uploadFileMngmt = () => {
     const storedTransactions = JSON.parse(sessionStorage.getItem(sessionStorageKey)) || []
     storedTransactions.push(data)
     sessionStorage.setItem(sessionStorageKey, JSON.stringify(storedTransactions))
-    const event = new Event(updatedStoreEvent)
-    window.dispatchEvent(event)
+    window.dispatchEvent(new Event(updatedStoreEvent))
   }
 
   const $uploadForm = document.getElementById('transactions-upload')
@@ -141,8 +140,8 @@ const column = {
     manageCollapsableMenu()
     dropFileMngmt()
     uploadFileMngmt()
-    manageUploadedFilesList()
 
+    manageUploadedFilesList()
     window.addEventListener(updatedStoreEvent, () => {
       manageUploadedFilesList()
     })
