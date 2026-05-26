@@ -8,6 +8,13 @@
   background-color: var(--lightest-gray);
   margin: 1%;
   padding: var(--main-padding);
+  border: 1px solid var(--lighter-gray);
+  border-radius: var(--border-radius-small);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+
+  h3 {
+    margin-bottom: 0
+  }
 }
 
 #home .filter {
@@ -20,6 +27,14 @@
   display: inline-flex;
   align-items: center;
   cursor: pointer;
+  gap: var(--x-small-space);
+  padding: var(--x-small-space) var(--small-space);
+  border-radius: var(--border-radius-small);
+  transition: background-color .2s ease;
+}
+
+#home .filter label:hover {
+  background-color: var(--primary);
 }
 
 #home #stats>div>div {
@@ -27,8 +42,11 @@
   text-align: center;
   padding: var(--main-padding) 0;
   border: 1px solid var(--brown);
+  background-color: var(--primary);
+  border-radius: var(--border-radius-small);
   box-sizing: border-box;
   margin: 1%;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
 }
 
 #home #stats span {

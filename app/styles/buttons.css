@@ -8,9 +8,17 @@
   color: var(--primary);
   cursor: pointer;
   border: 1px solid var(--primary);
+  transition: transform .15s ease, box-shadow .2s ease, filter .2s ease;
 }
 .btn:hover {
   filter: brightness(110%);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--secondary);
+  outline-offset: 2px;
 }
 
 .btn.secondary {
@@ -20,8 +28,8 @@
 
 .btn.tertiary {
   background: transparent;
-  color: var(--primary);
-  border-color: var(--light-gray);
+  color: var(--secondary);
+  border-color: var(--gray);
 }
 
 .btn[disabled], .btn.disabled {

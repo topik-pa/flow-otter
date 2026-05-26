@@ -29,5 +29,10 @@ header a {
   text-decoration: none;
   display: flex;
   align-items: center;
+  transition: opacity .2s ease-in-out;
+}
+
+header a:hover {
+  opacity: .85;
 }
 

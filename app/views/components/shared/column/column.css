@@ -55,7 +55,13 @@ aside#column h3 {
   color: var(--secondary);
   border-radius: var(--border-radius-small);
   cursor: pointer;
-  transition: .4s;
+  transition: border-color .2s ease, background-color .2s ease, transform .15s ease;
+}
+
+#transactions-upload #drop:hover {
+  border-color: var(--brown);
+  background-color: var(--white);
+  transform: translateY(-1px);
 }
 #transactions-upload #loaded-files {
   margin-top: var(--main-padding);
