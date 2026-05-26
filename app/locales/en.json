@@ -60,7 +60,31 @@
       "title": "Contact us",
       "description": "Contact page"
     },
-    "title": "Contact us"
+    "title": "Contact us",
+    "intro": "Need support or want to share feedback about flow-otter.com? Reach out through your preferred channel and we’ll get back to you as soon as possible.",
+    "channels": {
+      "email": {
+        "title": "Email",
+        "description": "Best for detailed requests, bug reports, and attachments. We usually reply within 1-2 business days.",
+        "cta": "Write to info@flow-otter.com"
+      },
+      "telegram": {
+        "title": "Telegram",
+        "description": "Best for quick questions and short updates. Ideal when you prefer fast chat messages.",
+        "cta": "Open Telegram chat"
+      },
+      "facebook": {
+        "title": "Facebook",
+        "description": "Follow project updates and send us a direct message for general inquiries.",
+        "cta": "Visit Facebook page"
+      }
+    },
+    "help": {
+      "title": "To help us assist you faster",
+      "item1": "Include the exchange name and file format you uploaded (CSV/XLSX).",
+      "item2": "Describe the issue steps and expected result.",
+      "item3": "If possible, include a screenshot or short sample data (without sensitive info)."
+    }
   },
   "transactions-table": {
     "meta": {

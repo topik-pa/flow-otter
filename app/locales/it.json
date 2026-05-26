@@ -60,7 +60,31 @@
       "title": "Contattaci",
       "description": "Pagina Contatti"
     },
-    "title": "Contattaci"
+    "title": "Contattaci",
+    "intro": "Hai bisogno di supporto o vuoi condividere un feedback su flow-otter.com? Contattaci tramite il canale che preferisci e ti risponderemo al più presto.",
+    "channels": {
+      "email": {
+        "title": "Email",
+        "description": "Ideale per richieste dettagliate, segnalazioni bug e allegati. Di solito rispondiamo entro 1-2 giorni lavorativi.",
+        "cta": "Scrivi a info@flow-otter.com"
+      },
+      "telegram": {
+        "title": "Telegram",
+        "description": "Perfetto per domande veloci e aggiornamenti brevi. Ideale se preferisci una chat immediata.",
+        "cta": "Apri chat Telegram"
+      },
+      "facebook": {
+        "title": "Facebook",
+        "description": "Segui gli aggiornamenti del progetto e inviaci un messaggio diretto per richieste generiche.",
+        "cta": "Visita pagina Facebook"
+      }
+    },
+    "help": {
+      "title": "Per aiutarti più velocemente",
+      "item1": "Indica il nome dell’exchange e il formato file caricato (CSV/XLSX).",
+      "item2": "Descrivi i passaggi del problema e il risultato atteso.",
+      "item3": "Se possibile, allega uno screenshot o un piccolo esempio dati (senza informazioni sensibili)."
+    }
   },
   "transactions-table": {
     "meta": {

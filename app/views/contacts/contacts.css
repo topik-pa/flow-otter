@@ -1,0 +1,69 @@
+#contacts #contacts-intro .lead {
+  background: var(--lightest-gray);
+  border-left: 4px solid var(--brown);
+  padding: var(--main-padding);
+  margin-bottom: var(--x-large-space);
+}
+
+#contacts #contacts-channels {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--main-padding);
+  margin-bottom: var(--x-large-space);
+}
+
+#contacts .contact-card {
+  background: var(--lightest-gray);
+  border: 1px solid var(--lighter-gray);
+  border-radius: var(--border-radius-big);
+  padding: var(--main-padding);
+  display: flex;
+  flex-direction: column;
+  gap: var(--small-space);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+#contacts .contact-card h2 {
+  margin-bottom: var(--x-small-space);
+}
+
+#contacts .contact-card p {
+  margin: 0;
+  min-height: 4.2em;
+}
+
+#contacts .contact-card .btn {
+  margin-top: auto;
+  text-align: center;
+}
+
+#contacts .contact-card .btn.tertiary {
+  background: var(--blue);
+  color: var(--white);
+  border-color: var(--blue);
+}
+
+#contacts #contacts-help {
+  background: var(--primary);
+  border: 1px dashed var(--gray);
+  border-radius: var(--border-radius-small);
+  padding: var(--main-padding);
+}
+
+#contacts #contacts-help ul {
+  margin: var(--small-space) 0 0 var(--large-space);
+}
+
+#contacts #contacts-help li {
+  margin-bottom: var(--x-small-space);
+}
+
+@media screen and (max-width: 1024px) {
+  #contacts #contacts-channels {
+    grid-template-columns: 1fr;
+  }
+
+  #contacts .contact-card p {
+    min-height: initial;
+  }
+}
