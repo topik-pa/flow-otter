@@ -1,6 +1,6 @@
 const cookieLayer = {
   init: () => {
-    const cookieName = 'flow-otter.com-privacy'
+    const cookieName = 'coin-otter.com-privacy'
     const cookieDuration = 120
     const cookieLayerWait = 3000
 

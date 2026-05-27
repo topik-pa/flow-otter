@@ -1,8 +1,8 @@
 {
-  "name": "flow-otter.com",
+  "name": "coin-otter.com",
   "version": "1.0.0",
-  "description": "flow-otter.com helps you clarify your messy crypto transactions history",
-  "homepage": "https://flow-otter.com",
+  "description": "coin-otter.com helps you clarify your messy crypto transactions history",
+  "homepage": "https://coin-otter.com",
   "bugs": {},
   "keywords": [
     "nodejs",
