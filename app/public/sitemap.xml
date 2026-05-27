@@ -2,25 +2,68 @@
 	xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
 
+	<!-- English pages -->
 	<url>
-		<loc>https://coin-otter.com</loc>
-		<lastmod>2025-01-01T12:00:00+00:00</lastmod>
+		<loc>https://coin-otter.com/en</loc>
+		<lastmod>2026-05-27T12:00:00+00:00</lastmod>
 		<changefreq>daily</changefreq>
 		<priority>1.0</priority>
 	</url>
-
-  <url>
-		<loc>https://coin-otter.com/contacts</loc>
-		<lastmod>2025-01-01T12:00:00+00:00</lastmod>
+	<url>
+		<loc>https://coin-otter.com/en/transactions-table</loc>
+		<lastmod>2026-05-27T12:00:00+00:00</lastmod>
+		<changefreq>weekly</changefreq>
+		<priority>0.8</priority>
+	</url>
+	<url>
+		<loc>https://coin-otter.com/en/transactions-graph</loc>
+		<lastmod>2026-05-27T12:00:00+00:00</lastmod>
+		<changefreq>weekly</changefreq>
+		<priority>0.8</priority>
+	</url>
+	<url>
+		<loc>https://coin-otter.com/en/contacts</loc>
+		<lastmod>2026-05-27T12:00:00+00:00</lastmod>
+		<changefreq>yearly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
+		<loc>https://coin-otter.com/en/privacy</loc>
+		<lastmod>2026-05-27T12:00:00+00:00</lastmod>
 		<changefreq>yearly</changefreq>
 		<priority>0.5</priority>
 	</url>
 
-  <url>
-		<loc>https://coin-otter.com/privacy</loc>
-		<lastmod>2025-01-01T12:00:00+00:00</lastmod>
+	<!-- Italian pages -->
+	<url>
+		<loc>https://coin-otter.com/it</loc>
+		<lastmod>2026-05-27T12:00:00+00:00</lastmod>
+		<changefreq>daily</changefreq>
+		<priority>1.0</priority>
+	</url>
+	<url>
+		<loc>https://coin-otter.com/it/transactions-table</loc>
+		<lastmod>2026-05-27T12:00:00+00:00</lastmod>
+		<changefreq>weekly</changefreq>
+		<priority>0.8</priority>
+	</url>
+	<url>
+		<loc>https://coin-otter.com/it/transactions-graph</loc>
+		<lastmod>2026-05-27T12:00:00+00:00</lastmod>
+		<changefreq>weekly</changefreq>
+		<priority>0.8</priority>
+	</url>
+	<url>
+		<loc>https://coin-otter.com/it/contacts</loc>
+		<lastmod>2026-05-27T12:00:00+00:00</lastmod>
 		<changefreq>yearly</changefreq>
 		<priority>0.5</priority>
 	</url>
-	
+	<url>
+		<loc>https://coin-otter.com/it/privacy</loc>
+		<lastmod>2026-05-27T12:00:00+00:00</lastmod>
+		<changefreq>yearly</changefreq>
+		<priority>0.5</priority>
+	</url>
+
 </urlset>
