@@ -21,6 +21,10 @@ block main
 
   h1= __('transactions-graph.title')
 
+  nav#transactions-graph-submenu(aria-label=__('transactions-graph.submenu.title'))
+    span.submenu-title= __('transactions-graph.submenu.title')
+    div#transactions-graph-submenu-links
+
   div#transactions-graph-container(data-empty-message=__('transactions-graph.empty'))
 
 block column 

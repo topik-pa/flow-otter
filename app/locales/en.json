@@ -102,7 +102,10 @@
       "description": "View your crypto transactions in a graph format"
     },
     "title": "Transactions Graph",
-    "empty": "No transactions available"
+    "empty": "No transactions available",
+    "submenu": {
+      "title": "Jump to graph"
+    }
   },
   "404": {
     "text": "This page is no longer available or never existed. <br><br>Start browsing from the Home page.<br><br>"

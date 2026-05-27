@@ -1,0 +1,80 @@
+#transactions-graph #transactions-graph-submenu {
+	display: flex;
+	align-items: center;
+	gap: var(--small-space);
+	flex-wrap: wrap;
+	background: var(--lightest-gray);
+	border: 1px solid var(--lighter-gray);
+	border-radius: var(--border-radius-small);
+	padding: var(--small-space);
+	margin-bottom: var(--main-padding);
+	position: sticky;
+	top: 0;
+	z-index: 2;
+}
+
+#transactions-graph #transactions-graph-submenu .submenu-title {
+	font-weight: 600;
+	color: var(--secondary);
+	margin-right: var(--x-small-space);
+}
+
+#transactions-graph #transactions-graph-submenu-links {
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--x-small-space);
+}
+
+#transactions-graph #transactions-graph-submenu-links a {
+	text-decoration: none;
+	color: var(--secondary);
+	background: var(--primary);
+	border: 1px solid var(--lighter-gray);
+	border-radius: var(--border-radius-small);
+	padding: .35rem .7rem;
+	font-size: var(--font-size-x-small);
+	transition: all .2s ease;
+}
+
+#transactions-graph #transactions-graph-submenu-links a:hover {
+	border-color: var(--brown);
+	color: var(--brown);
+	background: var(--white);
+}
+
+#transactions-graph #transactions-graph-container {
+	display: grid;
+	gap: var(--main-padding);
+}
+
+#transactions-graph .graph-section {
+	background: var(--lightest-gray);
+	border: 1px solid var(--lighter-gray);
+	border-radius: var(--border-radius-big);
+	padding: var(--main-padding);
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+	overflow-x: auto;
+}
+
+#transactions-graph .graph-section h3 {
+	margin: 0 0 var(--small-space);
+	color: var(--secondary);
+	background: var(--primary);
+	border: 1px solid var(--lighter-gray);
+	border-radius: var(--border-radius-small);
+	padding: .45rem .65rem;
+}
+
+#transactions-graph .graph-empty {
+	background: var(--lightest-gray);
+	border: 1px dashed var(--gray);
+	border-radius: var(--border-radius-small);
+	padding: var(--main-padding);
+	margin: 0;
+}
+
+@media screen and (max-width: 768px) {
+	#transactions-graph #transactions-graph-submenu {
+		position: static;
+	}
+}

@@ -1,10 +1,11 @@
 import {
   sessionStorageKey,
-  filteredStoredTransactionsKey,
   updatedStoreEvent
 } from '../../scripts/globals.js'
 
 const graphWrapper = document.getElementById('transactions-graph-container')
+const graphSubmenu = document.getElementById('transactions-graph-submenu')
+const graphSubmenuLinks = document.getElementById('transactions-graph-submenu-links')
 
 const buildTransactionsGraph = () => {
   if (!graphWrapper) return
@@ -41,18 +42,45 @@ const buildTransactionsGraph = () => {
   //
 
   if (!hasTransactions) {
-    const emptyCaseMessage = `<p>${emptyMessage}</p>`
+    if (graphSubmenu) {
+      graphSubmenu.classList.add('hide')
+    }
+    const emptyCaseMessage = `<p class="graph-empty">${emptyMessage}</p>`
     graphWrapper.innerHTML = emptyCaseMessage 
     return
   }
 
+  if (graphSubmenu) {
+    graphSubmenu.classList.remove('hide')
+  }
+
+  if (graphSubmenuLinks) {
+    graphSubmenuLinks.replaceChildren()
+  }
+
+  const makeSectionId = (file, index) => {
+    const exchange = (file.exchange || 'exchange').toString().toLowerCase().replace(/[^a-z0-9]+/g, '-')
+    const origin = (file.origin || 'file').toString().toLowerCase().replace(/[^a-z0-9]+/g, '-')
+    return `graph-${index + 1}-${exchange}-${origin}`
+  }
+
   graphWrapper.innerHTML = '' // Clear previous graph content
 
-  filteredStoredTransactions.forEach(file => {
+  filteredStoredTransactions.forEach((file, index) => {
+    const sectionId = makeSectionId(file, index)
     const $section = document.createElement('section')
     $section.className = 'graph-section'
+    $section.id = sectionId
+
+    if (graphSubmenuLinks) {
+      const $link = document.createElement('a')
+      $link.href = `#${sectionId}`
+      $link.textContent = `${file.exchange} · ${file.origin || `#${index + 1}`}`
+      graphSubmenuLinks.appendChild($link)
+    }
+
     const $title = document.createElement('h3')
-    $title.textContent = `Exchange: ${file.exchange} | Origin: ${file.origin}`
+    $title.textContent = `Exchange: ${file.exchange} · Origin: ${file.origin}`
     $section.appendChild($title)
     graphWrapper.appendChild($section)
     // Instantiate the graph
