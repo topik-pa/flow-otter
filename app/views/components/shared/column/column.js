@@ -7,6 +7,7 @@ import {
 const $root = document.getElementById('column')
 
 const manageCollapsableMenu = () => {
+  if (!$root) return
   const $collapse = $root.querySelector('#collapse')
   if (!$collapse) return
   $collapse.addEventListener('click', () => {
@@ -26,6 +27,8 @@ const dropFileMngmt = () => {
       $uploadBtn.classList.remove('disabled')
     }
   }
+
+  if (!$dropArea) return
 
   // Click per aprire file picker
   $dropArea.addEventListener('click', () => $fileInput.click())
@@ -69,6 +72,7 @@ const uploadFileMngmt = () => {
   }
 
   const $uploadForm = document.getElementById('transactions-upload')
+  if (!$uploadForm) return
   $uploadForm.addEventListener('submit', async(e) => {
     e.preventDefault()
     const fileInput = document.getElementById('transactions-input')
@@ -102,6 +106,8 @@ const manageUploadedFilesList = () => {
   const storedTransactions = JSON.parse(sessionStorage.getItem(sessionStorageKey)) || []
   const $loadedFiles = document.getElementById('loaded-files')
   const $noFiles = document.getElementById('no-files')
+
+  if (!$loadedFiles || !$noFiles) return
 
   if(storedTransactions.length === 0) {
     $loadedFiles.innerHTML = ''
