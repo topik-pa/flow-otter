@@ -15,12 +15,16 @@
   },
   "index": {
     "meta": {
-      "keywords": "crypto, transazioni, dashboard, exchange, analisi"
+      "title": "coin-otter.com — Dashboard per l'analisi delle transazioni crypto",
+      "description": "coin-otter.com ti aiuta a visualizzare e analizzare le tue transazioni crypto. Carica file CSV o XLS da qualsiasi exchange ed esplora la tua cronologia di trading con tabelle e grafici interattivi.",
+      "keywords": "crypto, transazioni, dashboard, exchange, analisi, bitcoin, ethereum, storico trading, portafoglio"
     }
   },
   "home": {
     "meta": {
-      "keywords": ""
+      "title": "Dashboard — coin-otter.com",
+      "description": "La tua dashboard per l'analisi crypto. Carica file di transazioni dai tuoi exchange, applica i filtri e visualizza immediatamente statistiche sulla tua attività di trading, asset e portafoglio.",
+      "keywords": "dashboard crypto, analisi transazioni, caricamento exchange, portafoglio crypto, statistiche trading, bitcoin dashboard"
     },
     "title": "Home page",
     "filters": {
@@ -56,9 +60,9 @@
   },
   "contacts": {
     "meta": {
-      "keywords": "contatti",
-      "title": "Contattaci",
-      "description": "Pagina Contatti"
+      "title": "Contattaci — coin-otter.com",
+      "description": "Contatta il team di coin-otter.com via email, Telegram o Facebook. Siamo qui per aiutarti con domande di supporto, segnalazioni bug e feedback sulla piattaforma.",
+      "keywords": "contatta coin-otter, supporto, aiuto, feedback, assistenza strumento crypto"
     },
     "title": "Contattaci",
     "intro": "Hai bisogno di supporto o vuoi condividere un feedback su coin-otter.com? Contattaci tramite il canale che preferisci e ti risponderemo al più presto.",
@@ -88,18 +92,18 @@
   },
   "transactions-table": {
     "meta": {
-      "keywords": "transazioni, tabella, crypto",
-      "title": "Tabella delle Transazioni",
-      "description": "Visualizza le tue transazioni crypto in formato tabellare"
+      "title": "Tabella delle Transazioni — coin-otter.com",
+      "description": "Sfoglia tutte le tue transazioni crypto in una tabella ordinabile e filtrabile. Filtra per exchange e criptovaluta per analizzare la tua cronologia di trading tra ordini di acquisto e vendita.",
+      "keywords": "tabella transazioni crypto, ordini acquisto vendita, storico exchange, log trading crypto"
     },
     "title": "Tabella delle Transazioni",
     "empty": "Nessuna transazione disponibile"
   },
   "transactions-graph": {
     "meta": {
-      "keywords": "transazioni, grafo, crypto",
-      "title": "Grafo delle Transazioni",
-      "description": "Visualizza le tue transazioni crypto in formato grafico"
+      "title": "Grafo delle Transazioni — coin-otter.com",
+      "description": "Visualizza il flusso delle tue transazioni crypto come grafico interattivo. Esplora la cronologia dei tuoi scambi per exchange e coppia di criptovalute in una vista grafica intuitiva.",
+      "keywords": "grafo transazioni crypto, flusso trading, grafico exchange, timeline crypto, visualizzazione transazioni"
     },
     "title": "Grafo delle Transazioni",
     "empty": "Nessuna transazione disponibile",
@@ -121,8 +125,9 @@
   },
   "privacy": {
     "meta": {
-      "keywords": "privacy, cookie, sicurezza, dati, diritti",
-      "description": "Pagina Privacy: norme e diritti riguardanti la fruizione del servizio"
+      "title": "Privacy Policy — coin-otter.com",
+      "description": "Leggi la privacy policy di coin-otter.com. Scopri come trattiamo i tuoi dati personali, l'uso dei cookie, i diritti GDPR e come contattarci per richieste legate alla privacy.",
+      "keywords": "privacy policy, GDPR, cookie, protezione dati, diritti utente, dati personali"
     },
     "title": "Privacy Policy",
     "section0": "<h2>Privacy Policy</h2><p>coin-otter.com rispetta la privacy dell'utente e si impegna a proteggere i suoi dati personali sulla base del Regolamento (UE) 2016/679 del Parlamento Europeo e del Consiglio del 27 aprile 2016 “relativo alla protezione delle persone fisiche con riguardo al trattamento dei dati personali, nonché alla libera circolazione di tali dati e che abroga la direttiva 95/46/CE (Regolamento generale sulla protezione dei dati), in vigore dal 24 maggio 2016, e applicabile a partire dal 25 maggio 2018.</p><p>La presente informativa privacy è valida per tutti i visitatori del sito internet coin-otter.com.</p>",
