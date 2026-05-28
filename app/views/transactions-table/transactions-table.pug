@@ -22,7 +22,8 @@ block main
 
   h1= __('transactions-table.title')
 
-  div#transactions-table-container(data-empty-message=__('transactions-table.empty'))
+  div#transactions-table-wrapper
+    div#transactions-table-container(data-empty-message=__('transactions-table.empty'))
 
 
 block column 

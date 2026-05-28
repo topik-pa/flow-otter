@@ -3,9 +3,32 @@ table {
   font-size: var(--font-size-x-small);
 }
 
+#transactions-table-wrapper {
+	background: var(--lightest-gray);
+	border: 1px solid var(--lighter-gray);
+	border-radius: var(--border-radius-big);
+	padding: var(--main-padding);
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+	overflow-x: auto;
+}
+
+#transactions-table-container {
+	min-width: 100%;
+}
+
+
 .table-empty-state {
 	padding: 1rem;
 	text-align: center;
 	color: #666;
 	font-style: italic;
+}
+
+.graph-empty {
+	background: var(--lightest-gray);
+	border: 1px dashed var(--gray);
+	border-radius: var(--border-radius-small);
+	padding: var(--main-padding);
+	margin: 0;
+	color: var(--secondary);
 }

@@ -41,7 +41,7 @@ const buildTransactionsTable = () => {
   // const hasTransactions = storedTransactions.some(batch => Array.isArray(batch.data) && batch.data.length > 0)
 
   if (!hasTransactions) {
-    const emptyCaseMessage = `<p>${emptyMessage}</p>`
+    const emptyCaseMessage = `<p class="graph-empty">${emptyMessage}</p>`
     tableWrapper.innerHTML = emptyCaseMessage 
     return
   }
