@@ -328,6 +328,15 @@ const printTransactionsData = () => {
 
   printFilters(activeStoredTransactions)
 
+  const $welcome = document.getElementById('welcome')
+  if ($welcome) {
+    if (activeStoredTransactions.length === 0) {
+      $welcome.classList.remove('hide')
+    } else {
+      $welcome.classList.add('hide')
+    }
+  }
+
   const filteredStoredTransactions = getFilteredTransactions()
 
   printStats(filteredStoredTransactions)

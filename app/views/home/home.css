@@ -1,3 +1,66 @@
+#home #welcome {
+  background: var(--lightest-gray);
+  border: 1px solid var(--lighter-gray);
+  border-radius: var(--border-radius-big);
+  padding: var(--main-padding);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  margin-bottom: var(--main-padding);
+}
+
+#home #welcome .lead {
+  font-size: var(--font-size-big);
+  color: var(--secondary);
+  margin-bottom: var(--main-padding);
+  line-height: 1.5;
+}
+
+#home .welcome-steps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--main-padding);
+}
+
+#home .welcome-step {
+  background: var(--primary);
+  border: 1px solid var(--lighter-gray);
+  border-radius: var(--border-radius-small);
+  padding: var(--main-padding);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+  position: relative;
+}
+
+#home .welcome-step .step-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  background: var(--brown);
+  color: var(--white);
+  border-radius: 50%;
+  font-weight: bold;
+  font-size: var(--font-size-small);
+  margin-bottom: var(--small-space);
+}
+
+#home .welcome-step h3 {
+  color: var(--secondary);
+  margin-bottom: var(--x-small-space);
+}
+
+#home .welcome-step p {
+  color: var(--dark-gray);
+  font-size: var(--font-size-small);
+  line-height: 1.5;
+  margin: 0;
+}
+
+@media screen and (max-width: 768px) {
+  #home .welcome-steps {
+    grid-template-columns: 1fr;
+  }
+}
+
 #home #stats>div {
   display: flex;
   flex-wrap: wrap;

@@ -39,6 +39,22 @@ block append meta
 block main
   h1= __('home.title')
 
+  section#welcome
+    p.lead= __('home.welcome.intro')
+    div.welcome-steps
+      div.welcome-step
+        span.step-number 1
+        h3= __('home.welcome.step1.title')
+        p= __('home.welcome.step1.text')
+      div.welcome-step
+        span.step-number 2
+        h3= __('home.welcome.step2.title')
+        p= __('home.welcome.step2.text')
+      div.welcome-step
+        span.step-number 3
+        h3= __('home.welcome.step3.title')
+        p= __('home.welcome.step3.text')
+
   section#filters
     h2= __('home.filters.title')
     div.filter-container
