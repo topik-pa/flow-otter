@@ -10,7 +10,7 @@ block append meta
   meta(name="description" content=__('transactions-table.meta.description'))
   meta(name="keywords" content=__('transactions-table.meta.keywords'))
 
-  script(src='/scripts/vendors/datatables.min.js')
+  script(src='/scripts/vendors/datatables.min.js', defer)
   link(rel='stylesheet', href='/styles/vendors/datatables.min.css')
 
   link(rel="canonical", href=canonicalUrl)

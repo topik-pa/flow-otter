@@ -30,7 +30,7 @@ block append meta
   meta(name="description" content=__('proj_description'))
   meta(name="keywords" content=__('index.meta.keywords'))
 
-  script(src='/scripts/vendors/chartjs.min.js')
+  script(src='/scripts/vendors/chartjs.min.js', defer)
 
   link(rel="canonical", href=canonicalUrl)
   each link in hreflangs

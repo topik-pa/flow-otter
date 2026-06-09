@@ -36,5 +36,5 @@
   pointer-events: none;
   cursor: default;
   opacity: 0.6;
-  background: var(--light-gray);
+  background: var(--darker-gray);
 }

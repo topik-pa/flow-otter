@@ -49,7 +49,7 @@
 }
 
 #home .welcome-step p {
-  color: var(--dark-gray);
+  color: var(--darkest-gray);
   font-size: var(--font-size-small);
   line-height: 1.5;
   margin: 0;
