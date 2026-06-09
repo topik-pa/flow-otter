@@ -3,7 +3,20 @@ aside(id="column")
 
   section 
     h3= __('column.drop.title')
-    form(id="transactions-upload" action='/transactions-upload', method='POST', enctype='multipart/form-data')
+    form(
+      id="transactions-upload"
+      action='/transactions-upload'
+      method='POST'
+      enctype='multipart/form-data'
+      data-no-file-message=__('column.drop.errors.no-file')
+      data-support-invite-message=__('column.drop.errors.support-invite')
+      data-support-confirm-label=__('column.drop.errors.support-confirm')
+      data-support-subject=__('column.drop.errors.support-subject')
+      data-support-body-prefix=__('column.drop.errors.support-body-prefix')
+      data-support-body-file-label=__('column.drop.errors.support-body-file-label')
+      data-support-body-error-label=__('column.drop.errors.support-body-error-label')
+      data-support-email=proj_email
+    )
       input(id="transactions-input" type='file', name='file', accept='.xlsx, .xls, .csv', required='true' hidden)
 
       div#drop= __('column.drop.file')

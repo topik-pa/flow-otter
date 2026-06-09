@@ -71,13 +71,40 @@ const uploadFileMngmt = () => {
     window.dispatchEvent(new Event(updatedStoreEvent))
   }
 
+  const isUnsupportedFileError = (message) => {
+    return /unsupported/i.test(message)
+  }
+
+  const openSupportEmail = ({ email, subject, body }) => {
+    const encodedEmail = encodeURIComponent(email)
+    const encodedSubject = encodeURIComponent(subject)
+    const encodedBody = encodeURIComponent(body)
+    const mailtoUrl = `mailto:${encodedEmail}?subject=${encodedSubject}&body=${encodedBody}`
+    window.location.href = mailtoUrl
+  }
+
   const $uploadForm = document.getElementById('transactions-upload')
   if (!$uploadForm) return
   $uploadForm.addEventListener('submit', async(e) => {
     e.preventDefault()
     const fileInput = document.getElementById('transactions-input')
+    const noFileMessage = $uploadForm.dataset.noFileMessage || 'Please select a file to upload.'
+    const supportInviteMessage = $uploadForm.dataset.supportInviteMessage || (
+      'This file format is not supported yet. Would you like to email it to us so we can improve support?'
+    )
+    const supportConfirmLabel = $uploadForm.dataset.supportConfirmLabel || (
+      'Press OK to open your email app.'
+    )
+    const supportSubject = $uploadForm.dataset.supportSubject || 'Unsupported file for coin-otter.com'
+    const supportBodyPrefix = $uploadForm.dataset.supportBodyPrefix || (
+      'Hi, I found a file that is not supported yet. I am attaching it here so you can review it.'
+    )
+    const supportBodyFileLabel = $uploadForm.dataset.supportBodyFileLabel || 'File'
+    const supportBodyErrorLabel = $uploadForm.dataset.supportBodyErrorLabel || 'Reported error'
+    const supportEmail = $uploadForm.dataset.supportEmail || 'info@coin-otter.com'
+
     if (fileInput.files.length === 0) {
-      alert('Please select a file to upload.')
+      alert(noFileMessage)
       return
     }
 
@@ -91,7 +118,31 @@ const uploadFileMngmt = () => {
       })
       const jsonResponse = await response.json()
       if(jsonResponse.error) {
-        alert(jsonResponse.error)
+        if (isUnsupportedFileError(jsonResponse.error)) {
+          const supportBody = [
+            supportBodyPrefix,
+            '',
+            `${supportBodyFileLabel}: ${file.name}`,
+            `${supportBodyErrorLabel}: ${jsonResponse.error}`
+          ].join('\n')
+
+          const confirmMessage = [
+            jsonResponse.error,
+            '',
+            supportInviteMessage,
+            supportConfirmLabel
+          ].join('\n')
+          const shouldOpenEmail = window.confirm(confirmMessage)
+          if (shouldOpenEmail) {
+            openSupportEmail({
+              email: supportEmail,
+              subject: supportSubject,
+              body: supportBody
+            })
+          }
+        } else {
+          alert(jsonResponse.error)
+        }
       } else {
         storeTransactions(jsonResponse)
         // alert('File uploaded successfully! Check console for parsed data.')

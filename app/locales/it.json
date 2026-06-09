@@ -66,7 +66,16 @@
   "column": {
     "drop": {
       "title": "Carica file",
-      "file": "Trascina qui un file CSV/XLS oppure clicca per selezionarlo"
+      "file": "Trascina qui un file CSV/XLS oppure clicca per selezionarlo",
+      "errors": {
+        "no-file": "Seleziona un file da caricare.",
+        "support-invite": "Questo file non è ancora supportato. Puoi inviarmelo così posso capire meglio il problema e aggiungere il supporto corretto.",
+        "support-confirm": "Premi OK per aprire l'app email e preparare il messaggio. Ricorda di allegare il file!",
+        "support-subject": "File non supportato per coin-otter.com",
+        "support-body-prefix": "Ciao, ho trovato un file non ancora supportato. Lo allego qui così puoi analizzarlo e migliorare la compatibilità.",
+        "support-body-file-label": "File",
+        "support-body-error-label": "Errore segnalato"
+      }
     },
     "files": {
       "title": "File caricati",

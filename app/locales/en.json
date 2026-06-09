@@ -66,7 +66,16 @@
   "column": {
     "drop": {
       "title": "Upload file",
-      "file": "Drop a CSV/XLS file here or click to select"
+      "file": "Drop a CSV/XLS file here or click to select",
+      "errors": {
+        "no-file": "Please select a file to upload.",
+        "support-invite": "This file format is not supported yet. You can send me this file so I can understand the issue and add support for it. Remember to attach the file!",
+        "support-confirm": "Press OK to open your email app and prepare the message. Remember to attach the file!",
+        "support-subject": "Unsupported file for coin-otter.com",
+        "support-body-prefix": "Hi, I found a file that is not supported yet. I am attaching it here so you can review it and improve compatibility.",
+        "support-body-file-label": "File",
+        "support-body-error-label": "Reported error"
+      }
     },
     "files": {
       "title": "Uploaded files",
