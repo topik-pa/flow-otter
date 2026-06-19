@@ -51,7 +51,7 @@
       "intro": "coin-otter.com helps you understand the flow of your crypto transactions. Upload your exchange history files and instantly explore your trading activity through statistics, tables and graphs.",
       "step1": {
         "title": "Upload your files",
-        "text": "Export your transaction history from your exchange (Binance, Kraken, Coinbase…) as a CSV or XLS file. Then drop it in the sidebar panel on the right."
+        "text": "Export your transaction history from your exchange (Binance, Kraken, Coinbase…) as a CSV or XLS file. Then drop it in the sidebar panel on the left."
       },
       "step2": {
         "title": "Apply filters",

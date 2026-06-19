@@ -51,7 +51,7 @@
       "intro": "coin-otter.com ti aiuta a capire il flusso delle tue transazioni crypto. Carica i file di storico dai tuoi exchange e analizza subito la tua attività di trading tramite statistiche, tabelle e grafici.",
       "step1": {
         "title": "Carica i tuoi file",
-        "text": "Esporta la cronologia delle transazioni dal tuo exchange (Binance, Kraken, Coinbase…) come file CSV o XLS. Poi trascinalo nel pannello laterale a destra."
+        "text": "Esporta la cronologia delle transazioni dal tuo exchange (Binance, Kraken, Coinbase…) come file CSV o XLS. Poi trascinalo nel pannello laterale a sinistra."
       },
       "step2": {
         "title": "Applica i filtri",

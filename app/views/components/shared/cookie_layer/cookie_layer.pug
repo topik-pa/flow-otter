@@ -3,4 +3,4 @@ div(id="cookie_layer")
   p= __('cookielayer.text')
   div
     a(class="btn", id="cookie_layer_accept")= __('cookielayer.ok')
-    a(class="btn secondary", href="privacy", title="Privacy")= __('cookielayer.privacy')
+    a(class="btn secondary", href='/'+locale + '/privacy', title="Privacy")= __('cookielayer.privacy')
