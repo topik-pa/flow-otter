@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Coin Otter — Understand the flow of your crypto trades</title>
+  <meta name="description" content="Coin Otter turns CSV/XLS exchange history files into clear crypto trading insights with filters, tables, and graphs." />
+  <style>
+    :root {
+      --bg: #0b1020;
+      --bg-soft: #121933;
+      --card: rgba(255, 255, 255, 0.06);
+      --card-border: rgba(255, 255, 255, 0.14);
+      --text: #f4f7ff;
+      --muted: #a9b3d1;
+      --primary: #6ee7ff;
+      --primary-2: #6d8bff;
+      --accent: #8bffb8;
+      --danger: #ff7fa3;
+      --shadow: 0 10px 35px rgba(0, 0, 0, 0.35);
+      --radius-xl: 20px;
+      --radius-lg: 14px;
+      --radius-md: 10px;
+      --max: 1120px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      color: var(--text);
+      background:
+        radial-gradient(1200px 700px at 10% -10%, rgba(109, 139, 255, 0.28), transparent 60%),
+        radial-gradient(900px 500px at 90% 0%, rgba(110, 231, 255, 0.18), transparent 60%),
+        linear-gradient(180deg, #090e1c 0%, #0b1020 100%);
+      line-height: 1.55;
+      scroll-behavior: smooth;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .container {
+      width: min(var(--max), 92%);
+      margin: 0 auto;
+    }
+
+    /* NAV */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      backdrop-filter: blur(10px);
+      background: rgba(11, 16, 32, 0.65);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 70px;
+      gap: 16px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+      letter-spacing: 0.2px;
+    }
+
+    .logo {
+      width: 50px;
+      height: 50px;
+      /*border-radius: 9px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, var(--primary), var(--primary-2));
+      color: #041020;
+      font-weight: 900;
+      box-shadow: var(--shadow);*/
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 20px;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .nav-links a:hover { color: var(--text); }
+
+    .btn {
+      border: 0;
+      cursor: pointer;
+      padding: 11px 16px;
+      border-radius: 10px;
+      font-weight: 650;
+      font-size: 0.95rem;
+      transition: transform .2s ease, box-shadow .2s ease, opacity .2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn:active { transform: translateY(1px) scale(.99); }
+
+    .btn-primary {
+      color: #031022;
+      background: linear-gradient(135deg, var(--primary), var(--primary-2));
+      box-shadow: 0 8px 24px rgba(109, 139, 255, .35);
+    }
+
+    .btn-primary:hover { opacity: .95; transform: translateY(-1px); }
+
+    .btn-ghost {
+      color: var(--text);
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+    }
+
+    .btn-ghost:hover { background: rgba(255, 255, 255, 0.1); }
+
+    /* HERO */
+    .hero {
+      padding: 84px 0 56px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 34px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: #d8e0ff;
+      background: rgba(139, 255, 184, 0.12);
+      border: 1px solid rgba(139, 255, 184, 0.3);
+      border-radius: 999px;
+      padding: 7px 12px;
+      font-size: .82rem;
+      margin-bottom: 14px;
+    }
+
+    h1 {
+      margin: 0 0 14px;
+      font-size: clamp(2rem, 4.4vw, 3.6rem);
+      line-height: 1.08;
+      letter-spacing: -0.02em;
+    }
+
+    .lead {
+      margin: 0 0 24px;
+      color: var(--muted);
+      font-size: clamp(1rem, 1.4vw, 1.15rem);
+      max-width: 62ch;
+    }
+
+    .hero-cta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+
+    .social-proof {
+      color: #c8d3f3;
+      font-size: .92rem;
+    }
+
+    .panel {
+      background: linear-gradient(180deg, rgba(255,255,255,0.1), rgba(255,255,255,0.04));
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .mockup {
+      padding: 16px;
+    }
+
+    .mockup img{
+      width: 100%;
+    }
+
+    .mockup-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+      color: #dbe5ff;
+      font-size: .9rem;
+    }
+
+    .dots { display: flex; gap: 7px; }
+    .dot {
+      width: 9px; height: 9px; border-radius: 99px;
+      background: rgba(255, 255, 255, .35);
+    }
+
+    .mockup-body {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 12px;
+    }
+
+    .sidebar, .content {
+      border-radius: 12px;
+      background: rgba(7, 11, 24, 0.65);
+      border: 1px solid rgba(255,255,255,0.08);
+      padding: 12px;
+      min-height: 270px;
+    }
+
+    .upload-box {
+      border: 1px dashed rgba(110, 231, 255, 0.55);
+      border-radius: 10px;
+      padding: 14px;
+      text-align: center;
+      color: #d8f6ff;
+      font-size: .9rem;
+      margin-bottom: 10px;
+    }
+
+    .chip-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .chip {
+      font-size: .76rem;
+      padding: 6px 8px;
+      border-radius: 999px;
+      background: rgba(109, 139, 255, 0.2);
+      border: 1px solid rgba(109, 139, 255, 0.45);
+      color: #dce5ff;
+    }
+
+    .chart {
+      margin-top: 10px;
+      height: 170px;
+      border-radius: 10px;
+      background: linear-gradient(180deg, rgba(110, 231, 255, .15), rgba(109, 139, 255, .04));
+      border: 1px solid rgba(255,255,255,.08);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .line {
+      position: absolute;
+      inset: auto 0 20px 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, rgba(110,231,255,.45), transparent);
+      animation: pulse 2.8s linear infinite;
+    }
+
+    .bars {
+      position: absolute;
+      inset: 22px 14px 18px;
+      display: flex;
+      align-items: end;
+      gap: 7px;
+    }
+
+    .bar {
+      flex: 1;
+      min-width: 8px;
+      border-radius: 5px 5px 2px 2px;
+      background: linear-gradient(180deg, var(--primary), var(--primary-2));
+      opacity: .88;
+      animation: rise 1.2s ease both;
+    }
+
+    .bar:nth-child(odd) { background: linear-gradient(180deg, #8bffb8, #5ec8ff); }
+
+    @keyframes rise {
+      from { transform: scaleY(.2); transform-origin: bottom; opacity: .2; }
+      to { transform: scaleY(1); opacity: .95; }
+    }
+
+    @keyframes pulse {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(100%); }
+    }
+
+    /* SECTIONS */
+    section {
+      padding: 62px 0;
+    }
+
+    h2 {
+      margin: 0 0 10px;
+      font-size: clamp(1.45rem, 2.2vw, 2rem);
+      letter-spacing: -0.02em;
+    }
+
+    .section-lead {
+      margin: 0;
+      color: var(--muted);
+      max-width: 72ch;
+    }
+
+    .grid-3 {
+      margin-top: 24px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius-lg);
+      padding: 18px;
+    }
+
+    .card h3 {
+      margin: 10px 0 8px;
+      font-size: 1.04rem;
+    }
+
+    .card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: .96rem;
+    }
+
+    .num {
+      width: 30px; height: 30px;
+      border-radius: 8px;
+      display: grid; place-items: center;
+      font-size: .85rem; font-weight: 750;
+      background: rgba(110, 231, 255, .16);
+      border: 1px solid rgba(110, 231, 255, .4);
+      color: #c8f5ff;
+    }
+
+    .checklist {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px 22px;
+      margin-top: 20px;
+      padding: 0;
+      list-style: none;
+    }
+
+    .checklist li {
+      position: relative;
+      padding-left: 26px;
+      color: #d6def8;
+    }
+
+    .checklist li::before {
+      content: "✓";
+      position: absolute;
+      left: 0; top: 0;
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    .pill {
+      display: inline-block;
+      margin-top: 10px;
+      font-size: .78rem;
+      padding: 6px 10px;
+      border-radius: 999px;
+      color: #ffd8e4;
+      background: rgba(255, 127, 163, 0.12);
+      border: 1px solid rgba(255, 127, 163, .35);
+    }
+
+    .faq {
+      margin-top: 20px;
+      display: grid;
+      gap: 10px;
+    }
+
+    details {
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      border-radius: 10px;
+      padding: 12px 14px;
+    }
+
+    summary {
+      cursor: pointer;
+      font-weight: 650;
+    }
+
+    details p {
+      margin: 10px 0 2px;
+      color: var(--muted);
+    }
+
+    /* CTA */
+    .cta {
+      text-align: center;
+      background: linear-gradient(180deg, rgba(109,139,255,.18), rgba(110,231,255,.08));
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius-xl);
+      padding: 34px 18px;
+      box-shadow: var(--shadow);
+    }
+
+    .cta p { color: var(--muted); margin: 8px auto 20px; max-width: 66ch; }
+
+    .cta .hero-cta { justify-content: center; margin: 0; }
+
+    footer {
+      padding: 26px 0 38px;
+      color: #93a1c8;
+      font-size: .9rem;
+    }
+
+    .footer-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .tiny {
+      font-size: .8rem;
+      color: #7f8cb0;
+    }
+
+    /* REVEAL */
+    .reveal {
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity .55s ease, transform .55s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 980px) {
+      .hero-grid { grid-template-columns: 1fr; }
+      .mockup-body { grid-template-columns: 1fr; }
+      .grid-3 { grid-template-columns: 1fr; }
+      .checklist { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <header class="nav">
+    <div class="container nav-inner">
+      <a class="brand" href="https://coin-otter.com/?landing=1">
+        <img src="./logo.webp" alt="Logo" class="logo">
+        <!-- <span class="logo">🦦</span> -->
+        <span>Coin Otter</span>
+      </a>
+      <nav class="nav-links">
+        <a href="#why">Perchè Coin Otter</a>
+        <a href="#how">Come funziona?</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+      <a class="btn btn-primary" href="#early-access">Prova gratis l'MVP</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero container">
+      <div class="hero-grid">
+        <div class="reveal">
+          <span class="eyebrow">⚡ MVP Early Access • Feedback-driven roadmap</span>
+          <h1>Dai un senso ai CSV illeggibili dei tuoi exchange. <br>Gratis e in 100% Privacy.</h1>
+          <p class="lead">
+            Carica i file di Binance, ByBit o Coinbase. Visualizza la tua attività con <strong>grafici puliti</strong> e visualizza lo storico delle tue operazioni attraverso un <strong>grafo in stile GitHub</strong>. <br>Nessun account richiesto!
+          </p>
+          <div class="hero-cta">
+            <a class="btn btn-primary" href="#early-access">Prova Coin Otter Gratis</a>
+            <a class="btn btn-ghost" href="#how">Leggi come funziona</a>
+            <p class="social-proof">🔒 I tuoi dati non lasciano il tuo computer. L'elaborazione avviene interamente nel tuo browser. Zero server, zero rischi.</p>
+          </div>
+          <p class="social-proof">Progettato per utenti di criptovalute che cercano chiarezza senza il caos dei fogli di calcolo.</p>
+        </div>
+
+        <div class="panel reveal" aria-hidden="true">
+          <div class="mockup">
+            <!-- <div class="mockup-top">
+              <div class="dots"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+              <span>Coin Otter Dashboard</span>
+            </div>
+            <div class="mockup-body">
+              <div class="sidebar">
+                <div class="upload-box">Drop CSV/XLS here<br><small>Binance • Bybit • Coinbase</small></div>
+                <div class="chip-wrap">
+                  <span class="chip">Binance</span>
+                  <span class="chip">Bybit</span>
+                  <span class="chip">BTC</span>
+                  <span class="chip">ETH</span>
+                  <span class="chip">SOL</span>
+                </div>
+              </div>
+              <div class="content">
+                <strong style="font-size:.92rem;color:#d9e6ff;">Graph View • Trade Flow Over Time</strong>
+                <div class="chart">
+                  <div class="bars">
+                    <span class="bar" style="height:42%"></span>
+                    <span class="bar" style="height:68%"></span>
+                    <span class="bar" style="height:38%"></span>
+                    <span class="bar" style="height:82%"></span>
+                    <span class="bar" style="height:56%"></span>
+                    <span class="bar" style="height:74%"></span>
+                    <span class="bar" style="height:48%"></span>
+                    <span class="bar" style="height:88%"></span>
+                    <span class="bar" style="height:60%"></span>
+                    <span class="bar" style="height:52%"></span>
+                  </div>
+                  <div class="line"></div>
+                </div>
+              </div>
+            </div> -->
+            <img src="./coin-otter-dashboard.webp" alt="Coin Otter dashboard">
+            <img src="./coin-otter-table.webp" alt="Coin Otter tabella">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="why" class="container reveal">
+      <h2>Progettato per i trader che cercano chiarezza, non confusione</h2>
+      <p class="section-lead">
+        I dati li hai già. Coin Otter ti aiuta a capire rapidamente: dove si concentra l'attività, quali monete dominano le tue operazioni e come cambia nel tempo il flusso delle tue transazioni.
+      </p>
+      <ul class="checklist">
+        <li>Configurazione rapida con file di esportazione da Exchange</li>
+        <li>Filtri istantanei in tutte le visualizzazioni</li>
+        <li>Flusso di lavoro con tabelle dettagliate e grafici visivi</li>
+        <li>Ideale per l'analisi e la revisione della dichiarazione dei redditi</li>
+      </ul>
+      <p class="section-lead">Stiamo sviluppando insieme a un team di commercialisti il modulo per estrarre i dati esatti per la dichiarazione dei redditi. Lascia la tua mail per essere avvisato appena è pronto e bloccare il tuo accesso gratuito</p>
+    </section>
+
+    <section id="how" class="container reveal">
+      <h2>Come funziona</h2>
+      <p class="section-lead">Dai dati grezzi alle analisi approfondite in tre semplici passaggi.</p>
+      <div class="grid-3">
+        <article class="card">
+          <div class="num">1</div>
+          <h3>Carica i tuoi file</h3>
+          <p>Esporta la cronologia delle transazioni da Binance, Bybit, Coinbase e altre piattaforme in formato CSV/XLS, quindi caricala in pochi istanti.</p>
+        </article>
+        <article class="card">
+          <div class="num">2</div>
+          <h3>Applica i filtri</h3>
+          <p>Seleziona gli exchange e le criptovalute su cui vuoi concentrarti. La visualizzazione dei dati si aggiorna istantaneamente.</p>
+        </article>
+        <article class="card">
+          <div class="num">3</div>
+          <h3>Esplora i tuoi dati</h3>
+          <p>Analizza le statistiche, utilizza la vista Tabella per i registri dettagliati o la vista Grafo per visualizzare l'andamento delle tue operazioni nel tempo.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="container reveal">
+      <div class="card">
+        <h2>Early MVP — il tuo feedback è importante!</h2>
+        <p class="section-lead">
+          Coin Otter è nella fase MVP: è una soluzione snella, mirata e in rapida evoluzione. I primi tester influenzano direttamente le funzionalità, il supporto degli exchange e le priorità della roadmap.
+        </p>
+        <span class="pill">MVP Note: sviluppato pubblicamente con il feedback degli utenti reali</span>
+      </div>
+    </section>
+
+    <section id="early-access" class="container reveal">
+      <div class="cta">
+        <h2>Sei pronto a trasformare i dati grezzi sulla storia delle criptovalute in informazioni chiare e intuitive?</h2>
+        <p>Unisciti ai primi utenti che stanno testando Coin Otter e contribuisci a plasmare il prodotto con il tuo feedback concreto.</p>
+        <div class="hero-cta">
+          <a class="btn btn-primary" href="#" id="tryBtn">Prova Coin Otter Gratis</a>
+          <a class="btn btn-ghost" id="feedbackBtn" href="mailto:info@coin-otter.com?subject=Feedback" title="Dacci un feedback">Dacci un Feedback</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="faq" class="container reveal">
+      <h2>FAQ</h2>
+      <div class="faq">
+        <details>
+          <summary>Coin Otter è gratuito?</summary>
+          <p>Sì — durante la fase MVP, l'accesso anticipato è gratuito.</p>
+        </details>
+        <details>
+          <summary>Quali exchange sono supportati?</summary>
+          <p>I principali exchange come Binance, Bybit e Coinbase tramite file di cronologia esportati. Il supporto viene ampliato in base alla domanda.</p>
+        </details>
+        <details>
+          <summary>Quali formati di file posso caricare?</summary>
+          <p>File CSV e XLS.</p>
+        </details>
+        <details>
+          <summary>Ho bisogno di chiavi API?</summary>
+          <p>No. Coin Otter funziona con i tuoi file di cronologia delle transazioni esportati — non è richiesta alcuna connessione API con l’exchange.</p>
+        </details>
+        <details>
+          <summary>Posso richiedere nuove funzionalità?</summary>
+          <p>Certamente. Gli utenti MVP hanno la maggiore influenza su ciò che verrà sviluppato in futuro.</p>
+        </details>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="container">
+    <div class="footer-row">
+      <span>© <span id="year">2026</span> Coin Otter</span>
+      <span class="tiny">Made for crypto traders who love clean data.</span>
+    </div>
+  </footer>
+
+  <script>
+    // Auto year
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Simple reveal-on-scroll animation
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add("visible");
+      });
+    }, { threshold: 0.14 });
+
+    document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
+
+    // CTA placeholders (replace with your real links)
+    document.getElementById("tryBtn").addEventListener("click", (e) => {
+      e.preventDefault();
+      alert("Connect this button to your signup/waitlist URL.");
+    });
+
+    /* document.getElementById("feedbackBtn").addEventListener("click", (e) => {
+      e.preventDefault();
+      alert("Connect this button to your feedback form (Typeform, Google Form, etc.).");
+    }); */
+  </script>
+</body>
+</html>
