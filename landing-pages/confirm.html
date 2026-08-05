@@ -37,6 +37,7 @@
         linear-gradient(180deg, #090e1c 0%, #0b1020 100%);
       line-height: 1.55;
       scroll-behavior: smooth;
+      height: 100vh;
     }
 
     a { color: inherit; text-decoration: none; }
@@ -104,6 +105,7 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
+      justify-content: center;
     }
 
     .btn:active { transform: translateY(1px) scale(.99); }
@@ -457,166 +459,27 @@
   </style>
 </head>
 <body>
-  <header class="nav">
-    <div class="container nav-inner">
-      <a class="brand" href="#early-access">
-        <img src="/assets/images/logo.webp" alt="Logo" class="logo">
-        <!-- <span class="logo">🦦</span> -->
-        <span>Coin Otter</span>
-      </a>
-      <nav class="nav-links">
-        <a href="#why">Perchè Coin Otter</a>
-        <a href="#how">Come funziona?</a>
-        <a href="#faq">FAQ</a>
-      </nav>
-      <a class="btn btn-primary" href="#early-access">Prova gratis l'MVP</a>
-    </div>
-  </header>
+
 
   <main>
-    <section class="hero container">
-      <div class="hero-grid">
+    <section class="hero container" style="min-height: 60vh; display: flex; align-items: center; justify-content: center;">
+      <div class="hero-grid" style="width: 100%; max-width: 480px; margin: 0 auto; text-align: center;">
         <div class="reveal">
-          <span class="eyebrow">⚡ MVP Early Access • Feedback-driven roadmap</span>
-          <h1>DCONFIRMED!!!!. <br>Gratis e in 100% Privacy.</h1>
-          <p class="lead">
-            Carica i file di Binance, ByBit o Coinbase. Visualizza la tua attività con <strong>grafici puliti</strong> e visualizza lo storico delle tue operazioni attraverso un <strong>grafo in stile GitHub</strong>. <br>Nessun account richiesto!
+          <h1>🎉 Congratulazioni! <br>Form inviato con successo.</h1>
+          <p class="lead" style="margin-bottom: 2rem;">
+            Grazie per esserti registrato all’early access.<br>
+            Riceverai presto aggiornamenti esclusivi.<br>
+            Unisciti subito al gruppo Telegram per restare aggiornato!
           </p>
-          <div class="hero-cta">
-            <a class="btn btn-primary" href="#early-access">Prova Coin Otter Gratis</a>
-            <a class="btn btn-ghost" href="#how">Leggi come funziona</a>
-            <p class="social-proof">🔒 I tuoi dati non lasciano il tuo computer. L'elaborazione avviene interamente nel tuo browser. Zero server, zero rischi.</p>
-          </div>
-          <p class="social-proof">Progettato per utenti di criptovalute che cercano chiarezza senza il caos dei fogli di calcolo.</p>
-        </div>
-
-        <div class="panel reveal" aria-hidden="true">
-          <div class="mockup">
-            <!-- <div class="mockup-top">
-              <div class="dots"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
-              <span>Coin Otter Dashboard</span>
-            </div>
-            <div class="mockup-body">
-              <div class="sidebar">
-                <div class="upload-box">Drop CSV/XLS here<br><small>Binance • Bybit • Coinbase</small></div>
-                <div class="chip-wrap">
-                  <span class="chip">Binance</span>
-                  <span class="chip">Bybit</span>
-                  <span class="chip">BTC</span>
-                  <span class="chip">ETH</span>
-                  <span class="chip">SOL</span>
-                </div>
-              </div>
-              <div class="content">
-                <strong style="font-size:.92rem;color:#d9e6ff;">Graph View • Trade Flow Over Time</strong>
-                <div class="chart">
-                  <div class="bars">
-                    <span class="bar" style="height:42%"></span>
-                    <span class="bar" style="height:68%"></span>
-                    <span class="bar" style="height:38%"></span>
-                    <span class="bar" style="height:82%"></span>
-                    <span class="bar" style="height:56%"></span>
-                    <span class="bar" style="height:74%"></span>
-                    <span class="bar" style="height:48%"></span>
-                    <span class="bar" style="height:88%"></span>
-                    <span class="bar" style="height:60%"></span>
-                    <span class="bar" style="height:52%"></span>
-                  </div>
-                  <div class="line"></div>
-                </div>
-              </div>
-            </div> -->
-            <img src="/assets/images/coin-otter-dashboard.webp" alt="Coin Otter dashboard">
-            <img src="/assets/images/coin-otter-table.webp" alt="Coin Otter tabella">
+          <div class="hero-cta" style="display: flex; flex-direction: column; gap: 1rem; align-items: center;">
+            <a class="btn btn-primary" href="https://t.me/coin_otter" target="_blank" style="width: 100%; max-width: 320px;">
+              Iscriviti al gruppo Telegram
+            </a>
+            <a class="btn btn-ghost" href="/mvp/" style="width: 100%; max-width: 320px;">
+              Vai all'app MVP
+            </a>
           </div>
         </div>
-      </div>
-    </section>
-
-    <section id="why" class="container reveal">
-      <h2>Progettato per i trader che cercano chiarezza, non confusione</h2>
-      <p class="section-lead">
-        I dati li hai già. Coin Otter ti aiuta a capire rapidamente: dove si concentra l'attività, quali monete dominano le tue operazioni e come cambia nel tempo il flusso delle tue transazioni.
-      </p>
-      <ul class="checklist">
-        <li>Configurazione rapida con file di esportazione da Exchange</li>
-        <li>Filtri istantanei in tutte le visualizzazioni</li>
-        <li>Flusso di lavoro con tabelle dettagliate e grafici visivi</li>
-        <li>Ideale per l'analisi e la revisione della dichiarazione dei redditi</li>
-      </ul>
-      <p class="section-lead">Stiamo sviluppando insieme a un team di commercialisti il modulo per estrarre i dati esatti per la dichiarazione dei redditi. Lascia la tua mail per essere avvisato appena è pronto e bloccare il tuo accesso gratuito</p>
-    </section>
-
-    <section id="how" class="container reveal">
-      <h2>Come funziona</h2>
-      <p class="section-lead">Dai dati grezzi alle analisi approfondite in tre semplici passaggi.</p>
-      <div class="grid-3">
-        <article class="card">
-          <div class="num">1</div>
-          <h3>Carica i tuoi file</h3>
-          <p>Esporta la cronologia delle transazioni da Binance, Bybit, Coinbase e altre piattaforme in formato CSV/XLS, quindi caricala in pochi istanti.</p>
-        </article>
-        <article class="card">
-          <div class="num">2</div>
-          <h3>Applica i filtri</h3>
-          <p>Seleziona gli exchange e le criptovalute su cui vuoi concentrarti. La visualizzazione dei dati si aggiorna istantaneamente.</p>
-        </article>
-        <article class="card">
-          <div class="num">3</div>
-          <h3>Esplora i tuoi dati</h3>
-          <p>Analizza le statistiche, utilizza la vista Tabella per i registri dettagliati o la vista Grafo per visualizzare l'andamento delle tue operazioni nel tempo.</p>
-        </article>
-      </div>
-    </section>
-
-    <section class="container reveal">
-      <div class="card">
-        <h2>Early MVP — il tuo feedback è importante!</h2>
-        <p class="section-lead">
-          Coin Otter è nella fase MVP: è una soluzione snella, mirata e in rapida evoluzione. I primi tester influenzano direttamente le funzionalità, il supporto degli exchange e le priorità della roadmap.
-        </p>
-        <span class="pill">MVP Note: sviluppato pubblicamente con il feedback degli utenti reali</span>
-      </div>
-    </section>
-
-    <section id="early-access" class="container reveal">
-      <div class="cta">
-        <h2>Sei pronto a trasformare i dati grezzi sulla storia delle criptovalute in informazioni chiare e intuitive?</h2>
-        <p>Unisciti ai primi utenti che stanno testando Coin Otter e contribuisci a plasmare il prodotto con il tuo feedback concreto.</p>
-        <!-- <div class="hero-cta">
-          <a class="btn btn-primary" href="#" id="tryBtn">Prova Coin Otter Gratis</a>
-          <a class="btn btn-ghost" id="feedbackBtn" href="mailto:info@coin-otter.com?subject=Feedback" title="Dacci un feedback">Dacci un Feedback</a>
-        </div> -->
-        <form id="early-access-form" style="display: flex; gap: 8px; align-items: center;">
-          <input type="email" id="early-access-email" placeholder="Enter your email" required style="padding: 8px; border-radius: 4px; border: 1px solid #ccc;">
-          <button type="submit" style="padding: 8px 16px; border-radius: 4px; background: #007bff; color: #fff; border: none;">Get Early Access</button>
-        </form>
-      </div>
-    </section>
-
-    <section id="faq" class="container reveal">
-      <h2>FAQ</h2>
-      <div class="faq">
-        <details>
-          <summary>Coin Otter è gratuito?</summary>
-          <p>Sì — durante la fase MVP, l'accesso anticipato è gratuito.</p>
-        </details>
-        <details>
-          <summary>Quali exchange sono supportati?</summary>
-          <p>I principali exchange come Binance, Bybit e Coinbase tramite file di cronologia esportati. Il supporto viene ampliato in base alla domanda.</p>
-        </details>
-        <details>
-          <summary>Quali formati di file posso caricare?</summary>
-          <p>File CSV e XLS.</p>
-        </details>
-        <details>
-          <summary>Ho bisogno di chiavi API?</summary>
-          <p>No. Coin Otter funziona con i tuoi file di cronologia delle transazioni esportati — non è richiesta alcuna connessione API con l’exchange.</p>
-        </details>
-        <details>
-          <summary>Posso richiedere nuove funzionalità?</summary>
-          <p>Certamente. Gli utenti MVP hanno la maggiore influenza su ciò che verrà sviluppato in futuro.</p>
-        </details>
       </div>
     </section>
 
@@ -641,22 +504,6 @@
     }, { threshold: 0.14 });
 
     document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
-
-    // CTA placeholders (replace with your real links)
-    /* document.getElementById("tryBtn").addEventListener("click", (e) => {
-      e.preventDefault();
-      alert("Connect this button to your signup/waitlist URL.");
-    }); */
-
-    /* document.getElementById("feedbackBtn").addEventListener("click", (e) => {
-      e.preventDefault();
-      alert("Connect this button to your feedback form (Typeform, Google Form, etc.).");
-    }); */
-
-    document.getElementById('early-access-form').addEventListener('submit', function(e) {
-      e.preventDefault();
-      window.location.href = '/confirm';
-    });
 
   </script>
 </body>

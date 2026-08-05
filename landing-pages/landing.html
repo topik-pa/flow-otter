@@ -454,6 +454,7 @@
       .checklist { grid-template-columns: 1fr; }
       .nav-links { display: none; }
     }
+    
   </style>
 </head>
 <body>
@@ -587,9 +588,10 @@
           <a class="btn btn-primary" href="#" id="tryBtn">Prova Coin Otter Gratis</a>
           <a class="btn btn-ghost" id="feedbackBtn" href="mailto:info@coin-otter.com?subject=Feedback" title="Dacci un feedback">Dacci un Feedback</a>
         </div> -->
-        <form id="early-access-form" style="display: flex; gap: 8px; align-items: center;">
-          <input type="email" id="early-access-email" placeholder="Enter your email" required style="padding: 8px; border-radius: 4px; border: 1px solid #ccc;">
-          <button type="submit" style="padding: 8px 16px; border-radius: 4px; background: #007bff; color: #fff; border: none;">Get Early Access</button>
+        <form id="early-access-form" style="display: flex; gap: 8px; align-items: center;justify-content: center;">
+          <input type="text" name="name" id="early-access-name" placeholder="Enter your name" required style="font-size:105%;padding: 14px 8px; border-radius: 4px; border: 1px solid #ccc;margin:8px;">
+          <input type="email" name="email" id="early-access-email" placeholder="Enter your email" required style="font-size:105%;padding: 14px 8px; border-radius: 4px; border: 1px solid #ccc;margin:8px;">
+          <button type="submit" style="cursor: pointer;font-weight: 600;font-size:105%;padding: 14px; border-radius: 4px; background: #007bff; color: #fff; border: none;margin:8px;text-shadow: 0px 1px 3px #000;">Get Early Access</button>
         </form>
       </div>
     </section>
@@ -653,8 +655,17 @@
       alert("Connect this button to your feedback form (Typeform, Google Form, etc.).");
     }); */
 
-    document.getElementById('early-access-form').addEventListener('submit', function(e) {
+    document.getElementById('early-access-form').addEventListener('submit', async function(e) {
       e.preventDefault();
+      const form = e.target;
+      const name = form.querySelector('[name="name"]').value;
+      const email = form.querySelector('[name="email"]').value;
+
+      await fetch('/api/users', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, email })
+      });
       window.location.href = '/form-submitted';
     });
 
