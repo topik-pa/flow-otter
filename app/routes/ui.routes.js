@@ -70,31 +70,37 @@ router.post(
     }
   })
 
+router.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, '../../landing-pages/landing.html'))
+})
+
 // Privacy
-router.get(`/:lang(${LANG_REGEX})/privacy`, (req, res) => viewController(req, res, 'privacy', [{ name: 'privacy' }]))
+router.get(`/mvp/:lang(${LANG_REGEX})/privacy`, 
+  (req, res) => viewController(req, res, 'privacy', [{ name: 'privacy' }]))
 
 // Contacts
-router.get(`/:lang(${LANG_REGEX})/contacts`, (req, res) => viewController(req, res, 'contacts', [{ name: 'contacts' }]))
+router.get(`/mvp/:lang(${LANG_REGEX})/contacts`, 
+  (req, res) => viewController(req, res, 'contacts', [{ name: 'contacts' }]))
 
 // Transactions table
 router.get(
-  `/:lang(${LANG_REGEX})/transactions-table`, 
+  `/mvp/:lang(${LANG_REGEX})/transactions-table`, 
   (req, res) => viewController(req, res, 'transactions-table', [{ name: 'transactions-table' }]))
 
 // Transactions graph
 router.get(
-  `/:lang(${LANG_REGEX})/transactions-graph`, 
+  `/mvp/:lang(${LANG_REGEX})/transactions-graph`, 
   (req, res) => viewController(req, res, 'transactions-graph', [{ name: 'transactions-graph' }]))
 
 // Home page
-router.get(`/:lang(${LANG_REGEX})`, (req, res) => viewController(req, res, 'home', []))
+router.get(`/mvp/:lang(${LANG_REGEX})`, (req, res) => viewController(req, res, 'home', []))
 
 // root page
-router.get('/', (req, res) => {
+router.get('/mvp', (req, res) => {
   // Get browser prefered language
   const lang = req.acceptsLanguages('en', 'it') || 'en'
   // Redirects
-  res.redirect(301, `/${lang}`)
+  res.redirect(301, `/mvp/${lang}`)
 })
 
 export default router
