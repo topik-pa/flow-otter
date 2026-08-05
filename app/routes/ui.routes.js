@@ -70,8 +70,13 @@ router.post(
     }
   })
 
+// Landing page
 router.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '../../landing-pages/landing.html'))
+})
+// Confirmation page
+router.get('/form-submitted', (req, res) => {
+  res.sendFile(path.join(__dirname, '../../landing-pages/confirm.html'))
 })
 
 // Privacy
