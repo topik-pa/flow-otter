@@ -63,11 +63,11 @@ function shouldCompress(req, res) {
 app.use((req, res, next) => {
   if (req.path && req.path.includes('/mvp/')) {
     // handle /mvp/ path case if needed
-  res.setHeader('Strict-Transport-Security', 'max-age=31536000; includeSubDomains; preload')
-  res.setHeader('Upgrade-insecure-requests', '1')
-  // eslint-disable-next-line max-len
-  res.setHeader('Content-Security-Policy', `default-src 'none'; script-src 'self' 'nonce-${res.locals.nonce}'; style-src 'self' 'unsafe-inline'; img-src 'self'; object-src 'none'; frame-src 'self'; form-action 'self'; font-src 'self'; media-src 'self'; connect-src 'self' https://c.statcounter.com; frame-ancestors 'none'; base-uri 'none'`)
-  res.setHeader('X-Content-Type-Options', 'nosniff')
+    res.setHeader('Strict-Transport-Security', 'max-age=31536000; includeSubDomains; preload')
+    res.setHeader('Upgrade-insecure-requests', '1')
+    // eslint-disable-next-line max-len
+    res.setHeader('Content-Security-Policy', `default-src 'none'; script-src 'self' 'nonce-${res.locals.nonce}'; style-src 'self' 'unsafe-inline'; img-src 'self'; object-src 'none'; frame-src 'self'; form-action 'self'; font-src 'self'; media-src 'self'; connect-src 'self' https://c.statcounter.com; frame-ancestors 'none'; base-uri 'none'`)
+    res.setHeader('X-Content-Type-Options', 'nosniff')
   }
   next()
 })
@@ -154,9 +154,9 @@ app.use((err, _req, res, _next) => {
 })
 
 // Database connection
-// import { connectToDB } from './app/db/mongoose.js'
-// if (process.env.NODE_ENV !== 'test') {
-//   await connectToDB()
-// }
+import { connectToDB } from './app/db/mongoose.js'
+if (process.env.NODE_ENV !== 'test') {
+  await connectToDB()
+}
 
 export { app, i18n }

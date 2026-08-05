@@ -27,7 +27,7 @@ GET http://localhost:3000/it/privacy
 
 ### API
 ### OK All users
-GET http://localhost:3000/api/users/
+GET http://localhost:3000/api/users
 
 ### OK User by ID
 GET http://localhost:3000/api/users/693ac65228077994449a00dd
@@ -36,15 +36,13 @@ GET http://localhost:3000/api/users/693ac65228077994449a00dd
 GET http://localhost:3000/api/users/username/Sara%20Neri
 
 ### Create a new user
-POST http://localhost:3000/api/users/
+POST http://localhost:3000/api/users
 Content-Type: application/json
 
 {
-  "name": "Gabriella",
-  "userId": 77,
-  "age": 66
+  "name": "testuser",
+  "email": "test@example.com"
 }
-
 
 ### Update user by ID
 PUT http://localhost:3000/api/users/693ac65228077994449a00dd
