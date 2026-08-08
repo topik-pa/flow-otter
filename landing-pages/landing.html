@@ -500,6 +500,9 @@
       .grid-3 { grid-template-columns: 1fr; }
       .checklist { grid-template-columns: 1fr; }
       .nav-links { display: none; }
+      #early-access-form {
+        flex-direction: column;
+      }
     }
     
   </style>
@@ -526,16 +529,16 @@
       <div class="hero-grid">
         <div class="reveal">
           <span class="eyebrow">⚡ MVP Early Access • Feedback-driven roadmap</span>
-          <h1>Dai un senso ai CSV illeggibili dei tuoi exchange. <br>Gratis e in 100% Privacy.</h1>
+          <h1>Dai un senso ai CSV illeggibili dei tuoi exchange. <br>Gratis e al 100% rispettoso della tua privacy.</h1>
           <p class="lead">
-            Carica i file di Binance, ByBit o Coinbase. Visualizza la tua attività con <strong>grafici puliti</strong> e visualizza lo storico delle tue operazioni attraverso un <strong>grafo in stile GitHub</strong>. <br>Nessun account richiesto!
+            Carica i file di storico delle transazioni di Binance, ByBit o Coinbase. Visualizza la tua attività con <strong>grafici puliti</strong> e visualizza le tue operazioni attraverso un <strong>grafo in stile GitHub</strong>. <br>Nessun account richiesto!
           </p>
           <div class="hero-cta">
             <a class="btn btn-primary" href="#early-access">Prova Coin Otter Gratis</a>
             <a class="btn btn-ghost" href="#how">Leggi come funziona</a>
-            <p class="social-proof">🔒 I tuoi dati non lasciano il tuo computer. L'elaborazione avviene interamente nel tuo browser. Zero server, zero rischi.</p>
+            <p class="social-proof">🔒 I tuoi dati non vengono salvati su alcun server o database: zero rischi per la tua privacy.</p>
           </div>
-          <p class="social-proof">Progettato per utenti di criptovalute che cercano chiarezza senza il caos dei fogli di calcolo.</p>
+          <p class="social-proof">Progettato per utenti di criptovalute che cercano chiarezza senza il caos dei CSV e fogli di calcolo.</p>
         </div>
 
         <div class="panel reveal" aria-hidden="true">
@@ -636,9 +639,9 @@
           <a class="btn btn-ghost" id="feedbackBtn" href="mailto:info@coin-otter.com?subject=Feedback" title="Dacci un feedback">Dacci un Feedback</a>
         </div> -->
         <form id="early-access-form" style="display: flex; gap: 8px; align-items: center;justify-content: center;">
-          <input type="text" name="name" id="early-access-name" placeholder="Enter your name" required style="font-size:105%;padding: 14px 8px; border-radius: 4px; border: 1px solid #ccc;margin:8px;">
-          <input type="email" name="email" id="early-access-email" placeholder="Enter your email" required style="font-size:105%;padding: 14px 8px; border-radius: 4px; border: 1px solid #ccc;margin:8px;">
-          <button type="submit" style="cursor: pointer;font-weight: 600;font-size:105%;padding: 14px; border-radius: 4px; background: #007bff; color: #fff; border: none;margin:8px;text-shadow: 0px 1px 3px #000;">Get Early Access</button>
+          <input type="text" name="name" id="early-access-name" placeholder="Il tuo nome" required style="font-size:105%;padding: 14px 8px; border-radius: 4px; border: 1px solid #ccc;margin:8px;">
+          <input type="email" name="email" id="early-access-email" placeholder="La tua email" required style="font-size:105%;padding: 14px 8px; border-radius: 4px; border: 1px solid #ccc;margin:8px;">
+          <button type="submit" style="cursor: pointer;font-weight: 600;font-size:105%;padding: 14px; border-radius: 4px; background: #007bff; color: #fff; border: none;margin:8px;text-shadow: 0px 1px 3px #000;">Richiedi l'accesso anticipato</button>
         </form>
       </div>
     </section>
@@ -652,11 +655,11 @@
         </details>
         <details>
           <summary>Quali exchange sono supportati?</summary>
-          <p>I principali exchange come Binance, Bybit e Coinbase tramite file di cronologia esportati. Il supporto viene ampliato in base alla domanda.</p>
+          <p>I principali exchange come Binance, Bybit e Coinbase tramite file di cronologia esportati. Il supporto viene ampliato in base alla domanda e al tuo supporto.</p>
         </details>
         <details>
           <summary>Quali formati di file posso caricare?</summary>
-          <p>File CSV e XLS.</p>
+          <p>Tipicamente gli Exchange rilasciano i file con estensione CSV o XLSX.</p>
         </details>
         <details>
           <summary>Ho bisogno di chiavi API?</summary>
@@ -664,7 +667,7 @@
         </details>
         <details>
           <summary>Posso richiedere nuove funzionalità?</summary>
-          <p>Certamente. Gli utenti MVP hanno la maggiore influenza su ciò che verrà sviluppato in futuro.</p>
+          <p>Certamente: lo scopo di questa fase è proprio questo!. Gli utenti MVP hanno la maggiore influenza su ciò che verrà sviluppato in futuro.</p>
         </details>
       </div>
     </section>
@@ -717,5 +720,8 @@
     });
 
   </script>
+
+  <script nonce="">var sc_project = 13203086;var sc_invisible = 1;var sc_security = "eb31f405";</script>
+  <script async="" defer="" src="https://www.statcounter.com/counter/counter.js" nonce=""></script>
 </body>
 </html>
